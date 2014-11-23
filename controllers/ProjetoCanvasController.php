@@ -8,6 +8,7 @@ use app\models\ProjetoCanvasSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use app\models\ItemCanvas;
 
 /**
  * ProjetoCanvasController implements the CRUD actions for ProjetoCanvas model.
@@ -98,6 +99,7 @@ class ProjetoCanvasController extends Controller
      */
     public function actionDelete($id)
     {
+    	ItemCanvas::deleteAll(['id_projeto_canvas' => $id]);
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);
