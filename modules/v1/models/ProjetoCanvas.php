@@ -6,6 +6,7 @@ use Yii;
 use yii\web\Link;
 use yii\web\Linkable;
 use yii\helpers\Url;
+use app\models\Usuario;
 
 /**
  * This is the model class for table "projeto_canvas".
