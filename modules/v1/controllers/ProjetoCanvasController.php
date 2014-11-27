@@ -5,6 +5,7 @@ namespace app\modules\v1\controllers;
 use yii\rest\ActiveController;
 use app\modules\v1\models\ProjetoCanvas;
 use yii\data\ActiveDataProvider;
+use app\models\Usuario;
 
 class ProjetoCanvasController extends ActiveController
 {
@@ -33,8 +34,14 @@ class ProjetoCanvasController extends ActiveController
 	
 	public function prepareDataProviderIndex()
 	{
+		$condition = ['ativo' => 'S'];
+		$email = \Yii::$app->request->get('email', null);
+		if($email !== null) {
+			$usuario = Usuario::findOne(['email' => $email]);
+			$condition['id_usuario'] = $usuario ? $usuario->id : -1;
+		}
 		return new ActiveDataProvider([
-	           'query' => ProjetoCanvas::find()->where(['ativo' => 'S']),
+	           'query' => ProjetoCanvas::find()->where($condition),
 	        ]);
 	}
 	
