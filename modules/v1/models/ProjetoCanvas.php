@@ -81,7 +81,8 @@ class ProjetoCanvas extends \yii\db\ActiveRecord
     			'ativo' => function($model) { 
     							return $model->ativo == 'S' ? 'Sim' : 'Nao'; 
     						},
-    			//'usuario'
+    			//'usuario',
+    			//'itensCanvas'
     		];
     }
     
