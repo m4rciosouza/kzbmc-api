@@ -27,7 +27,7 @@ class ItemCanvas extends \yii\db\ActiveRecord
 	const ESTRUTURA_CUSTO = 'ec';
 	const FLUXO_RECEITA = 'fr';
 	
-	public function getProjeto_canvas()
+	public function getProjetoCanvas()
 	{
 		return $this->hasOne(ProjetoCanvas::className(), ['id' => 'id_projeto_canvas']);
 	}
@@ -81,7 +81,7 @@ class ItemCanvas extends \yii\db\ActiveRecord
     			'titulo',
     			'descricao',
     			'cor',
-    			//'projeto_canvas'
+    			'projetoCanvas'
     		];
     }
 }
