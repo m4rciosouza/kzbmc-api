@@ -6,6 +6,7 @@ use yii\rest\ActiveController;
 use app\modules\v1\models\ProjetoCanvas;
 use yii\data\ActiveDataProvider;
 use app\models\Usuario;
+use yii\filters\auth\QueryParamAuth;
 
 class ProjetoCanvasController extends ActiveController
 {
@@ -22,6 +23,9 @@ class ProjetoCanvasController extends ActiveController
 				'corsFilter' => [
 						'class' => \yii\filters\Cors::className(),
 				],
+				'authenticator' => [
+						'class' => QueryParamAuth::className(),
+				]
 		];
 	}
 	

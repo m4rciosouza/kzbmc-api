@@ -2,6 +2,7 @@
 
 namespace app\models;
 
+use yii\web\ForbiddenHttpException;
 class User extends \yii\base\Object implements \yii\web\IdentityInterface
 {
     public $id;
@@ -40,6 +41,10 @@ class User extends \yii\base\Object implements \yii\web\IdentityInterface
      */
     public static function findIdentityByAccessToken($token, $type = null)
     {
+    	if(!\Yii::$app->request->getHeaders()->has('Authorization')) {
+    		throw new ForbiddenHttpException();
+    	}
+    	$token = \Yii::$app->request->getHeaders()->get('Authorization');
         foreach (self::$users as $user) {
             if ($user['accessToken'] === $token) {
                 return new static($user);

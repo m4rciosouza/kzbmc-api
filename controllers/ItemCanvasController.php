@@ -8,22 +8,32 @@ use app\models\ItemCanvasSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\filters\AccessControl;
 
 /**
  * ItemCanvasController implements the CRUD actions for ItemCanvas model.
  */
 class ItemCanvasController extends Controller
 {
-    public function behaviors()
+	public function behaviors()
     {
-        return [
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'delete' => ['post'],
-                ],
-            ],
-        ];
+     	return [
+       			'access' => [
+       					'class' => AccessControl::className(),
+       					'rules' => [
+       							[
+       									'allow' => true,
+       									'roles' => ['@'],
+       							],
+       					],
+       			],
+     			'verbs' => [
+     					'class' => VerbFilter::className(),
+     					'actions' => [
+     							'delete' => ['post'],
+     					],
+     			],
+       	];
     }
 
     /**

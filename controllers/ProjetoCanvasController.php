@@ -9,6 +9,7 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use app\models\ItemCanvas;
+use yii\filters\AccessControl;
 
 /**
  * ProjetoCanvasController implements the CRUD actions for ProjetoCanvas model.
@@ -17,14 +18,23 @@ class ProjetoCanvasController extends Controller
 {
     public function behaviors()
     {
-        return [
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'delete' => ['post'],
-                ],
-            ],
-        ];
+     	return [
+       			'access' => [
+       					'class' => AccessControl::className(),
+       					'rules' => [
+       							[
+       									'allow' => true,
+       									'roles' => ['@'],
+       							],
+       					],
+       			],
+     			'verbs' => [
+     					'class' => VerbFilter::className(),
+     					'actions' => [
+     							'delete' => ['post'],
+     					],
+     			],
+       	];
     }
 
     /**
