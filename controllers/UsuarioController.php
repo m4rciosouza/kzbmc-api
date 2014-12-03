@@ -41,7 +41,7 @@ class UsuarioController extends Controller
      * @return mixed
      */
     public function actionIndex()
-    {var_dump(Yii::$app->request->queryParams);
+    {
         $searchModel = new UsuarioSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 

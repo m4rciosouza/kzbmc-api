@@ -3,6 +3,9 @@
 namespace app\models;
 
 use yii\web\ForbiddenHttpException;
+use Yii;
+use JWT;
+
 class User extends \yii\base\Object implements \yii\web\IdentityInterface
 {
     public $id;
@@ -41,15 +44,31 @@ class User extends \yii\base\Object implements \yii\web\IdentityInterface
      */
     public static function findIdentityByAccessToken($token, $type = null)
     {
-    	if(!\Yii::$app->request->getHeaders()->has('Authorization')) {
-    		throw new ForbiddenHttpException();
+    	if(!Yii::$app->request->getHeaders()->has('Authorization')) {
+    		throw new ForbiddenHttpException('Not allowed', 403);
     	}
-    	$token = \Yii::$app->request->getHeaders()->get('Authorization');
-        foreach (self::$users as $user) {
+    	
+    	$token = Yii::$app->request->getHeaders()->get('Authorization');
+    	$token = str_replace('Bearer ', '', $token);
+    	
+    	try {
+    		$tokenData = JWT::decode($token, Yii::$app->params['jwt_key']);
+    	}
+    	catch(\Exception $e) {
+    		throw new ForbiddenHttpException('Not allowed', 403);
+    	}
+    	
+    	// validate the token data
+    	//TODO implement token data validation, browser, IP, expiration time...
+    	if($tokenData->iat == '1356999524' && $tokenData->iss == 'http://example.org') {
+    		return new static(self::$users[100]);
+    	}
+    	
+        /*foreach (self::$users as $user) {
             if ($user['accessToken'] === $token) {
                 return new static($user);
             }
-        }
+        }*/
 
         return null;
     }

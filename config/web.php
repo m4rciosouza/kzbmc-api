@@ -60,12 +60,16 @@ $config = [
     			'showScriptName' => true,
     			'rules' => [
     					['class' => 'yii\rest\UrlRule', 
-    					 'controller' => 'v1/projeto-canvas', 
-    					 'extraPatterns' => ['GET usuario/{id}' => 'buscar-por-id-usuario']
+    					 	'controller' => 'v1/projeto-canvas', 
+    					 	'extraPatterns' => ['GET usuario/{id}' => 'buscar-por-id-usuario']
     					],
     					['class' => 'yii\rest\UrlRule', 
-    					 'controller' => 'v1/item-canvas',
-    					 'extraPatterns' => ['GET projeto-canvas/{id}' => 'buscar-por-id-projeto-canvas']
+    					 	'controller' => 'v1/item-canvas',
+    					 	'extraPatterns' => ['GET projeto-canvas/{id}' => 'buscar-por-id-projeto-canvas']
+    					],
+    					['class' => 'yii\rest\UrlRule',
+    						'controller' => 'v1/usuario',
+    						'extraPatterns' => ['POST auth' => 'autenticar']
     					],
     					['class' => 'yii\web\UrlRule', 'pattern' => '<controller:\w+>', 'route' => '<controller>/index'],
     					['class' => 'yii\web\UrlRule', 'pattern' => '<controller:\w+>/<id:\d+>', 'route' => '<controller>/view'],
