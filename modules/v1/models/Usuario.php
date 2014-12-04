@@ -55,6 +55,19 @@ class Usuario extends \yii\db\ActiveRecord
         ];
     }
     
+    public function beforeSave($insert)
+    {
+    	if (parent::beforeSave($insert)) {
+	    	if(!empty($this->senha) && $insert) {
+	    		$this->senha = md5($this->senha);
+	    	}
+    		return true;
+    	} 
+    	else {
+    		return false;
+    	}
+    }
+    
     public function getProjetosCanvas()
     {
     	return $this->hasMany(ProjetoCanvas::className(), ['id_usuario' => 'id']);

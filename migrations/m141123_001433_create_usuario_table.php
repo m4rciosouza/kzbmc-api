@@ -12,7 +12,7 @@ class m141123_001433_create_usuario_table extends Migration
     			'email' => 'varchar(200) NOT NULL',
     			'senha' => 'varchar(32) NOT NULL',
     			'lingua' => 'varchar(2) NOT NULL DEFAULT \'BR\'',
-    			'ativo' => 'varchar(1) NOT NULL DEFAULT \'S\'',
+    			'ativo' => 'varchar(1) NOT NULL DEFAULT \'N\'',
     			'data_criacao' => 'timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP',
     	]);
     }
