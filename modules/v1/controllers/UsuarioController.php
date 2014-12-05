@@ -2,10 +2,13 @@
 
 namespace app\modules\v1\controllers;
 
+use Yii;
 use yii\rest\ActiveController;
 use yii\data\ActiveDataProvider;
 use app\modules\v1\models\Usuario;
 use yii\web\UnauthorizedHttpException;
+use yii\web\Request;
+use yii\web\BadRequestHttpException;
 
 class UsuarioController extends ActiveController
 {
@@ -28,7 +31,7 @@ class UsuarioController extends ActiveController
 	public function actions()
 	{
 		$actions = parent::actions();
-		unset($actions['index'], $actions['view'], $actions['update'], $actions['delete']);
+		unset($actions['index'], $actions['view'], $actions['delete']);
 		return $actions;
 	}
 	
@@ -42,12 +45,34 @@ class UsuarioController extends ActiveController
 	public function actionAutenticar()
 	{
 		$model = new Usuario();
-		if($model->load(\Yii::$app->request->post())) {
+		if($model->load(Yii::$app->request->post())) {
 			$usuario = Usuario::findOne(['email' => $model->email]);
-			if($usuario && $usuario->senha == md5($model->senha)) {
+			if($usuario && $usuario->senha == md5($model->senha) && 
+				$usuario->ativo == Usuario::ATIVO) {
 				return ['token' => $usuario->generateJwtToken()];
 			}
 		}		
         throw new UnauthorizedHttpException('Bad credentials', 401);
+	}
+	
+	public function actionEsqueciSenha()
+	{
+		$email = Yii::$app->request->getBodyParam('email');
+		$usuario = Usuario::findOne(['email' => $email]);
+		if(!$usuario) {
+			throw new BadRequestHttpException('Invalid email', 400);
+		}
+		
+		$usuario->ativo = Usuario::INATIVO;
+		$usuario->save();
+		
+		Yii::$app->mailer->compose()
+			->setFrom(Yii::$app->params['adminEmail'])
+			->setTo($email)
+			->setSubject('Recuperar Senha')
+			->setHtmlBody('<b>Clique no link <a href="#">AQUI</a> para definir uma nova senha.</b>')
+			->send();
+		
+		Yii::$app->end();
 	}
 }

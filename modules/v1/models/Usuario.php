@@ -17,6 +17,9 @@ use JWT;
  */
 class Usuario extends \yii\db\ActiveRecord
 {
+	const ATIVO = 'S';
+	const INATIVO = 'N';
+	
     /**
      * @inheritdoc
      */
@@ -31,9 +34,11 @@ class Usuario extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['email', 'senha'], 'required'],
+            [['email'], 'required'],
+        	[['senha'], 'required', 'on' => ['insert']],
             [['data_criacao'], 'safe'],
             [['email'], 'string', 'max' => 200],
+        	[['email'], 'unique'],
             [['senha'], 'string', 'max' => 32],
             [['ativo'], 'string', 'max' => 1],
             [['lingua'], 'string', 'max' => 2]
@@ -58,14 +63,28 @@ class Usuario extends \yii\db\ActiveRecord
     public function beforeSave($insert)
     {
     	if (parent::beforeSave($insert)) {
-	    	if(!empty($this->senha) && $insert) {
-	    		$this->senha = md5($this->senha);
+	    	if($insert || strlen($this->senha) < 32) {
+	    		if(empty($this->senha)) {
+		    		$usuario = $this->findOne($this->id);
+		    		$this->senha = $usuario->senha;    			
+	    		}
+	    		else {
+		    		$this->senha = md5($this->senha);
+	    		}
 	    	}
     		return true;
     	} 
     	else {
     		return false;
     	}
+    }
+    
+    public function load($data, $formName = null)
+    {
+    	if(Yii::$app->request->getIsPost()) {
+    		$this->scenario = 'insert';
+    	}
+    	return parent::load($data, $formName);
     }
     
     public function getProjetosCanvas()
