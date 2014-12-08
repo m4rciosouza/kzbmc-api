@@ -41,6 +41,7 @@ class UsuarioController extends ActiveController
 	 * 
 	 * @throws UnauthorizedHttpException
 	 * @return json string
+	 * @deprecated MOVIDO PARA TOKENCTRL
 	 */
 	public function actionAutenticar()
 	{

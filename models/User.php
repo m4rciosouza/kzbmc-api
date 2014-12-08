@@ -60,9 +60,9 @@ class User extends \yii\base\Object implements \yii\web\IdentityInterface
     	
     	// validate the token data
     	//TODO implement token data validation, browser, IP, expiration time...
-    	if($tokenData->iat == '1356999524' && $tokenData->iss == 'http://example.org') {
+    	//if($tokenData->iat == '1356999524' && $tokenData->iss == 'http://example.org') {
     		return new static(self::$users[100]);
-    	}
+    	//}
     	
         /*foreach (self::$users as $user) {
             if ($user['accessToken'] === $token) {

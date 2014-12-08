@@ -71,6 +71,9 @@ $config = [
     						'controller' => 'v1/usuario',
     						'extraPatterns' => ['POST auth' => 'autenticar', 'POST esqueci-senha' => 'esqueci-senha']
     					],
+    					['class' => 'yii\rest\UrlRule',
+    						'controller' => 'v1/token',
+    					],
     					['class' => 'yii\web\UrlRule', 'pattern' => '<controller:\w+>', 'route' => '<controller>/index'],
     					['class' => 'yii\web\UrlRule', 'pattern' => '<controller:\w+>/<id:\d+>', 'route' => '<controller>/view'],
     					['class' => 'yii\web\UrlRule', 'pattern' => '<controller:\w+>/<action:\w+>/<id:\d+>', 'route' => '<controller>/<action>'],
