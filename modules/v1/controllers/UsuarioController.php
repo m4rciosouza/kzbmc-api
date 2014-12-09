@@ -36,29 +36,24 @@ class UsuarioController extends ActiveController
 	}
 	
 	/**
-	 * Método POST de autenticação de usuário.
+	 * Método de autenticação de usuário.
 	 * Passar usuário e senha como parâmetros.
 	 * 
 	 * @throws UnauthorizedHttpException
 	 * @return json string
-	 * @deprecated MOVIDO PARA TOKENCTRL
 	 */
-	public function actionAutenticar()
+	public function actionAutenticar($email, $senha)
 	{
-		$model = new Usuario();
-		if($model->load(Yii::$app->request->post())) {
-			$usuario = Usuario::findOne(['email' => $model->email]);
-			if($usuario && $usuario->senha == md5($model->senha) && 
-				$usuario->ativo == Usuario::ATIVO) {
-				return ['token' => $usuario->generateJwtToken()];
-			}
-		}		
+        $usuario = Usuario::findOne(['email' => $email]);
+        if($usuario && $usuario->senha == md5($senha) &&
+        	$usuario->ativo == Usuario::ATIVO) {
+        	return ['token' => $usuario->generateJwtToken()];
+        }
         throw new UnauthorizedHttpException('Bad credentials', 401);
 	}
 	
-	public function actionEsqueciSenha()
+	public function actionEsqueciSenha($email)
 	{
-		$email = Yii::$app->request->getBodyParam('email');
 		$usuario = Usuario::findOne(['email' => $email]);
 		if(!$usuario) {
 			throw new BadRequestHttpException('Invalid email', 400);

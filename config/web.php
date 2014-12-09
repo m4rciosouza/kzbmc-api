@@ -59,6 +59,7 @@ $config = [
     			'enableStrictParsing' => true,
     			'showScriptName' => true,
     			'rules' => [
+    					// RestFul routes
     					['class' => 'yii\rest\UrlRule', 
     					 	'controller' => 'v1/projeto-canvas', 
     					 	'extraPatterns' => ['GET usuario/{id}' => 'buscar-por-id-usuario']
@@ -69,11 +70,9 @@ $config = [
     					],
     					['class' => 'yii\rest\UrlRule',
     						'controller' => 'v1/usuario',
-    						'extraPatterns' => ['POST auth' => 'autenticar', 'POST esqueci-senha' => 'esqueci-senha']
+    						'extraPatterns' => ['GET auth' => 'autenticar', 'GET esqueci-senha' => 'esqueci-senha']
     					],
-    					['class' => 'yii\rest\UrlRule',
-    						'controller' => 'v1/token',
-    					],
+    					// backend routes
     					['class' => 'yii\web\UrlRule', 'pattern' => '<controller:\w+>', 'route' => '<controller>/index'],
     					['class' => 'yii\web\UrlRule', 'pattern' => '<controller:\w+>/<id:\d+>', 'route' => '<controller>/view'],
     					['class' => 'yii\web\UrlRule', 'pattern' => '<controller:\w+>/<action:\w+>/<id:\d+>', 'route' => '<controller>/<action>'],
