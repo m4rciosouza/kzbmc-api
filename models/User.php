@@ -44,13 +44,6 @@ class User extends \yii\base\Object implements \yii\web\IdentityInterface
      */
     public static function findIdentityByAccessToken($token, $type = null)
     {
-    	if(!Yii::$app->request->getHeaders()->has('Authorization')) {
-    		throw new ForbiddenHttpException('Not allowed', 403);
-    	}
-    	
-    	$token = Yii::$app->request->getHeaders()->get('Authorization');
-    	$token = str_replace('Bearer ', '', $token);
-    	
     	try {
     		$tokenData = JWT::decode($token, Yii::$app->params['jwt_key']);
     	}

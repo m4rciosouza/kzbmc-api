@@ -62,15 +62,18 @@ $config = [
     					// RestFul routes
     					['class' => 'yii\rest\UrlRule', 
     					 	'controller' => 'v1/projeto-canvas', 
-    					 	'extraPatterns' => ['GET usuario/{id}' => 'buscar-por-id-usuario']
+    					 	'extraPatterns' => ['GET,OPTIONS usuario/{id}' => 'buscar-por-id-usuario']
     					],
     					['class' => 'yii\rest\UrlRule', 
     					 	'controller' => 'v1/item-canvas',
-    					 	'extraPatterns' => ['GET projeto-canvas/{id}' => 'buscar-por-id-projeto-canvas']
+    					 	'extraPatterns' => ['GET,OPTIONS projeto-canvas/{id}' => 'buscar-por-id-projeto-canvas']
     					],
     					['class' => 'yii\rest\UrlRule',
     						'controller' => 'v1/usuario',
-    						'extraPatterns' => ['GET auth' => 'autenticar', 'GET esqueci-senha' => 'esqueci-senha']
+    						'extraPatterns' => [
+    								'POST,OPTIONS auth' => 'autenticar', 
+    								'POST,OPTIONS esqueci-senha' => 'esqueci-senha'
+    							]
     					],
     					// backend routes
     					['class' => 'yii\web\UrlRule', 'pattern' => '<controller:\w+>', 'route' => '<controller>/index'],

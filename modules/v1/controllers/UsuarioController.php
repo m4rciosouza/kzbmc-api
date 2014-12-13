@@ -7,7 +7,6 @@ use yii\rest\ActiveController;
 use yii\data\ActiveDataProvider;
 use app\modules\v1\models\Usuario;
 use yii\web\UnauthorizedHttpException;
-use yii\web\Request;
 use yii\web\BadRequestHttpException;
 
 class UsuarioController extends ActiveController
@@ -42,8 +41,13 @@ class UsuarioController extends ActiveController
 	 * @throws UnauthorizedHttpException
 	 * @return json string
 	 */
-	public function actionAutenticar($email, $senha)
+	public function actionAutenticar()
 	{
+		if(Yii::$app->request->getIsOptions()) {
+			return true;
+		}
+		$email = Yii::$app->request->getBodyParam('email');
+		$senha = Yii::$app->request->getBodyParam('senha');
         $usuario = Usuario::findOne(['email' => $email]);
         if($usuario && $usuario->senha == md5($senha) &&
         	$usuario->ativo == Usuario::ATIVO) {
@@ -52,8 +56,12 @@ class UsuarioController extends ActiveController
         throw new UnauthorizedHttpException('Bad credentials', 401);
 	}
 	
-	public function actionEsqueciSenha($email)
+	public function actionEsqueciSenha()
 	{
+		if(Yii::$app->request->getIsOptions()) {
+			return true;
+		}
+		$email = Yii::$app->request->getBodyParam('email');
 		$usuario = Usuario::findOne(['email' => $email]);
 		if(!$usuario) {
 			throw new BadRequestHttpException('Invalid email', 400);

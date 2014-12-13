@@ -21,6 +21,9 @@ class ItemCanvasController extends ActiveController
 				'corsFilter' => [
 						'class' => \yii\filters\Cors::className(),
 				],
+				'authenticator' => [
+						'class' => HttpJwtAuth::className(),
+				]
 		];
 	}
 	
