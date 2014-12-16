@@ -39,6 +39,7 @@ class ProjetoCanvasController extends ActiveController
 	{
 		$condition = ['ativo' => 'S'];
 		$email = \Yii::$app->request->get('email', null);
+		//TODO validar email com o email do token caso não implemente feature no user validator
 		if($email !== null) {
 			$usuario = Usuario::findOne(['email' => $email]);
 			$condition['id_usuario'] = $usuario ? $usuario->id : -1;

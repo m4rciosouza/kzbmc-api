@@ -111,14 +111,41 @@ class Usuario extends \yii\db\ActiveRecord
      */
     public function generateJwtToken()
     {
-    	//TODO definir parametros corretos, como browser e IP...
     	$token = array(
     			'iss' => $this->email,
     			'aud' => $this->email,
-    			'iat' => 1356999524,
-    			'nbf' => 1357000000,
-    			'exp' => Yii::$app->params['jwt_exp_time']
+    			'iat' => time(),
+    			'exp' => Yii::$app->params['jwt_exp_time'],
+    			// custom attrs
+    			'ip' => static::getIp(),
+    			'user_agent' => static::getUserAgent(),
+    			'id' => $this->id
     	);
     	return JWT::encode($token, Yii::$app->params['jwt_key']);
+    }
+    
+    public static function getUserAgent()
+    {
+    	return isset($_SERVER['HTTP_USER_AGENT']) ? $_SERVER['HTTP_USER_AGENT'] : 'UNKNOWN';
+    }
+    
+    public static function getIp()
+    {
+    	$ipaddress = '';
+    	if(isset($_SERVER['HTTP_CLIENT_IP']))
+    		$ipaddress = $_SERVER['HTTP_CLIENT_IP'];
+    	else if(isset($_SERVER['HTTP_X_FORWARDED_FOR']))
+    		$ipaddress = $_SERVER['HTTP_X_FORWARDED_FOR'];
+    	else if(isset($_SERVER['HTTP_X_FORWARDED']))
+    		$ipaddress = $_SERVER['HTTP_X_FORWARDED'];
+    	else if(isset($_SERVER['HTTP_FORWARDED_FOR']))
+    		$ipaddress = $_SERVER['HTTP_FORWARDED_FOR'];
+    	else if(isset($_SERVER['HTTP_FORWARDED']))
+    		$ipaddress = $_SERVER['HTTP_FORWARDED'];
+    	else if(isset($_SERVER['REMOTE_ADDR']))
+    		$ipaddress = $_SERVER['REMOTE_ADDR'];
+    	else
+    		$ipaddress = 'UNKNOWN';
+    	return $ipaddress;
     }
 }

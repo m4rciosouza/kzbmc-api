@@ -5,6 +5,7 @@ namespace app\models;
 use yii\web\ForbiddenHttpException;
 use Yii;
 use JWT;
+use app\modules\v1\models\Usuario;
 
 class User extends \yii\base\Object implements \yii\web\IdentityInterface
 {
@@ -51,19 +52,35 @@ class User extends \yii\base\Object implements \yii\web\IdentityInterface
     		throw new ForbiddenHttpException('Not allowed', 403);
     	}
     	
-    	// validate the token data
-    	//TODO implement token data validation, browser, IP, expiration time...
-    	//if($tokenData->iat == '1356999524' && $tokenData->iss == 'http://example.org') {
-    		return new static(self::$users[100]);
-    	//}
+    	static::validateQueryEmail($tokenData->iss);
     	
-        /*foreach (self::$users as $user) {
-            if ($user['accessToken'] === $token) {
-                return new static($user);
-            }
-        }*/
-
+    	// validate the token data
+    	if($tokenData->exp >= time() /*&& $tokenData->ip == Usuario::getIp() &&
+    			$tokenData->user_agent == Usuario::getUserAgent()*/) {
+    		return new static(self::$users[100]);
+    		/*return [
+			            'id' => $tokenData->id,
+			            'username' => $tokenData->iss,
+			            'password' => 'admin',
+			            'authKey' => 'test100key',
+			            'accessToken' => '100-token',
+			        ];*/
+    	}
         return null;
+    }
+    
+    protected static function validateQueryEmail($userEmail)
+    {
+    	$email = null;
+    	if(Yii::$app->request->getIsGet()) {
+    		$email = Yii::$app->request->getQueryParam('email');
+    	}
+    	if(Yii::$app->request->getIsPost()) {
+    		$email = Yii::$app->request->post('email');
+    	}
+    	if(!is_null($email) && $email != $userEmail) {
+    		throw new ForbiddenHttpException('Not allowed', 403);
+    	}
     }
 
     /**
