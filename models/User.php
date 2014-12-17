@@ -6,6 +6,7 @@ use yii\web\ForbiddenHttpException;
 use Yii;
 use JWT;
 use app\modules\v1\models\Usuario;
+use yii\web\UnauthorizedHttpException;
 
 class User extends \yii\base\Object implements \yii\web\IdentityInterface
 {
@@ -49,7 +50,7 @@ class User extends \yii\base\Object implements \yii\web\IdentityInterface
     		$tokenData = JWT::decode($token, Yii::$app->params['jwt_key']);
     	}
     	catch(\Exception $e) {
-    		throw new ForbiddenHttpException('Not allowed', 403);
+    		throw new UnauthorizedHttpException('Not allowed', 401);
     	}
     	
     	static::validateQueryEmail($tokenData->iss);
