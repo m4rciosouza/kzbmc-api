@@ -60,6 +60,9 @@ $config = [
     			'showScriptName' => true,
     			'rules' => [
     					// RestFul routes
+    					['class' => 'yii\rest\UrlRule',
+    						'controller' => 'v1/compartilhado',
+    					],
     					['class' => 'yii\rest\UrlRule', 
     					 	'controller' => 'v1/projeto-canvas', 
     					 	'extraPatterns' => ['GET,OPTIONS usuario/{id}' => 'buscar-por-id-usuario']

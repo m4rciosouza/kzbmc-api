@@ -40,6 +40,7 @@ AppAsset::register($this);
                     ['label' => 'Contact', 'url' => ['/site/contact']],
                 	['label' => 'Projetos Canvas', 'url' => ['/projetocanvas/index']],
                 	['label' => 'Itens Canvas', 'url' => ['/itemcanvas/index']],
+                	['label' => 'Projetos Canvas Comp.', 'url' => ['/projetocanvascompartilhado/index']],
                 	['label' => 'Usuarios', 'url' => ['/usuario/index']],
                     Yii::$app->user->isGuest ?
                         ['label' => 'Login', 'url' => ['/site/login']] :
