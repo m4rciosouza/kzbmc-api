@@ -19,6 +19,9 @@ class Usuario extends \yii\db\ActiveRecord
 {
 	const ATIVO = 'S';
 	const INATIVO = 'N';
+	const LINGUA_EN = 'en';
+	const LINGUA_PT = 'pt';
+	const LINGUA_ES = 'es';
 	
     /**
      * @inheritdoc
@@ -147,5 +150,10 @@ class Usuario extends \yii\db\ActiveRecord
     	else
     		$ipaddress = 'UNKNOWN';
     	return $ipaddress;
+    }
+    
+    public static function gerarSenha()
+    {
+    	return ucwords(substr(md5(time() + uniqid()), 24));
     }
 }

@@ -62,6 +62,7 @@ $config = [
     					// RestFul routes
     					['class' => 'yii\rest\UrlRule',
     						'controller' => 'v1/compartilhado',
+    						'extraPatterns' => ['POST,OPTIONS compartilhar' => 'compartilhar']
     					],
     					['class' => 'yii\rest\UrlRule', 
     					 	'controller' => 'v1/projeto-canvas', 
