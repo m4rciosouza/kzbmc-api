@@ -43,4 +43,19 @@ class ProjetoCanvasCompartilhado extends \yii\db\ActiveRecord
             'id_usuario' => Yii::t('projeto_canvas_compartilhado', 'Id Usuario'),
         ];
     }
+    
+    public function getProjetoCanvas()
+    {
+    	return $this->hasOne(ProjetoCanvas::className(), ['id' => 'id_projeto_canvas']);
+    }
+    
+    public function fields()
+    {
+    	return [
+    			'id',
+    			'id_projeto_canvas',
+    			'id_usuario',
+    			'projetoCanvas'
+    	];
+    }
 }
