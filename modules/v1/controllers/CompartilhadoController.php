@@ -22,18 +22,19 @@ class CompartilhadoController extends ActiveController
 	public function behaviors()
 	{
 		return [
-				/*'corsFilter' => [
+				'corsFilter' => [
 						'class' => \yii\filters\Cors::className(),
 				],
 				'authenticator' => [
 						'class' => HttpJwtAuth::className(),
-				]*/
+				]
 		];
 	}
 	
 	public function actions()
 	{
 		$actions = parent::actions();
+		unset($actions['create'], $actions['update'], $actions['view'], $actions['delete']);
 		$actions['index']['prepareDataProvider'] = [$this, 'prepareDataProviderIndex'];
 		return $actions;
 	}
@@ -68,7 +69,7 @@ class CompartilhadoController extends ActiveController
 		}
 		
 		$idProjetoCanvas = Yii::$app->request->post('idProjetoCanvas', null);
-		$email = Yii::$app->request->post('email', null);
+		$email = Yii::$app->request->post('emailCompartilhar', null);
 		$lingua = Yii::$app->request->post('lingua', Usuario::LINGUA_EN);
 		$senha = '';
 		
