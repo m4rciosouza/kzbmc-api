@@ -7,6 +7,7 @@ use yii\web\Link;
 use yii\web\Linkable;
 use yii\helpers\Url;
 use app\modules\v1\models\Usuario;
+use yii\db\Query;
 
 /**
  * This is the model class for table "projeto_canvas".
@@ -20,6 +21,9 @@ use app\modules\v1\models\Usuario;
  */
 class ProjetoCanvas extends \yii\db\ActiveRecord
 {
+	const ATIVO = 'S';
+	const INATIVO = 'N';
+	
 	public $email;
 	
 	public function getUsuario()
@@ -30,6 +34,22 @@ class ProjetoCanvas extends \yii\db\ActiveRecord
 	public function getItensCanvas()
 	{
 		return $this->hasMany(ItemCanvas::className(), ['id_projeto_canvas' => 'id']);
+	}
+	
+	public function getItens()
+	{
+		$itensCanvasArr = [];
+		$itensCanvas = ItemCanvas::findAll(['id_projeto_canvas' => $this->id]);
+		if(count($itensCanvas) > 0) {
+			foreach($itensCanvas as $itemCanvas) {
+				$itensCanvasArr[$itemCanvas->tipo][] = [
+						'titulo' => $itemCanvas->titulo,
+						'descricao' => $itemCanvas->descricao,
+						'cor' => $itemCanvas->cor
+					];
+			}
+		}
+		return $itensCanvasArr;
 	}
 	
     /**
@@ -83,6 +103,7 @@ class ProjetoCanvas extends \yii\db\ActiveRecord
     						},
     			//'usuario',
     			//'itensCanvas'
+    			//'itens'
     		];
     }
     

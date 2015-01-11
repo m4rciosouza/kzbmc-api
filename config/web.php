@@ -79,6 +79,13 @@ $config = [
     								'POST,OPTIONS esqueci-senha' => 'esqueci-senha'
     							]
     					],
+    					['class' => 'yii\rest\UrlRule',
+	    					'controller' => 'v1/mobile',
+	    					'extraPatterns' => [
+	    							'POST,OPTIONS sincronizar-servidor' => 'sincronizar-servidor',
+	    							'POST,OPTIONS sincronizar-cliente' => 'sincronizar-cliente'
+	    						]
+    					],
     					// backend routes
     					['class' => 'yii\web\UrlRule', 'pattern' => '<controller:\w+>', 'route' => '<controller>/index'],
     					['class' => 'yii\web\UrlRule', 'pattern' => '<controller:\w+>/<id:\d+>', 'route' => '<controller>/view'],
