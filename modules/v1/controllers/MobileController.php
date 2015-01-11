@@ -14,23 +14,6 @@ class MobileController extends ActiveController
 {
 	public $modelClass = 'app\modules\v1\models\ProjetoCanvas';
 	
-	/*public $serializer = [
-			'class' => 'yii\rest\Serializer',
-			'collectionEnvelope' => 'items',
-	];*/
-	
-	/*public function behaviors()
-	{
-		return [
-				'corsFilter' => [
-						'class' => \yii\filters\Cors::className(),
-				],
-				'authenticator' => [
-						'class' => HttpJwtAuth::className(),
-				]
-		];
-	}*/
-	
 	public function actions()
 	{
 		$actions = parent::actions();
