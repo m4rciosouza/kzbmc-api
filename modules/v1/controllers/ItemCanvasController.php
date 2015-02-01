@@ -32,11 +32,8 @@ class ItemCanvasController extends ActiveController
 	
 	public function actionBuscarPorIdProjetoCanvas($id)
 	{
-		$email = \Yii::$app->request->getQueryParam('email',
-				\Yii::$app->request->post('email'));
-		$usuario = Usuario::findOne(['email' => $email, 'ativo' => Usuario::ATIVO]);
-		$modoLeitura = $this->possuiProjetoCompartilhado($id, $usuario->id);
-		$projetoCanvas = $this->validarAcessoProjetoCanvas($id, $usuario->id, $modoLeitura);
+		$modoLeitura = $this->possuiProjetoCompartilhado($id);
+		$projetoCanvas = $this->validarAcessoProjetoCanvas($id, $modoLeitura);
 		
 		$itensCanvas = ItemCanvas::findAll(['id_projeto_canvas' => (int) $id]);
 		$itens = $this->getItensCanvasFormatados($itensCanvas);
@@ -52,20 +49,14 @@ class ItemCanvasController extends ActiveController
 	 * sendo de sua própria autoria ou compartilhado.
 	 * 
 	 * @param integer $projetoCanvasId
-	 * @param integer $usuarioId
 	 * @param boolean $modoLeitura
 	 * @throws UnauthorizedHttpException
 	 * @return ProjetoCanvas
 	 */
-	private function validarAcessoProjetoCanvas($projetoCanvasId, $usuarioId, $modoLeitura)
+	private function validarAcessoProjetoCanvas($projetoCanvasId, $modoLeitura)
 	{
-		if($modoLeitura) {
-			$projetoCanvas = ProjetoCanvas::findOne($projetoCanvasId);
-		}
-		else {
-			$condition = ['id' => $projetoCanvasId, 'id_usuario' => $usuarioId];
-			$projetoCanvas = ProjetoCanvas::findOne($condition);
-		}
+		// modo leitura nao valida o usuario
+		$projetoCanvas = ProjetoCanvas::findOne($projetoCanvasId, !$modoLeitura);
 		
 		if(!$projetoCanvas) {
 			throw new UnauthorizedHttpException('Access denied', 403);
@@ -79,12 +70,14 @@ class ItemCanvasController extends ActiveController
 	 * apenas atribuído como modo de leitura por outro usuário.
 	 * 
 	 * @param integer $projetoCanvasId
-	 * @param integer $usuarioId
 	 * @return boolean
 	 */
-	private function possuiProjetoCompartilhado($projetoCanvasId, $usuarioId)
+	private function possuiProjetoCompartilhado($projetoCanvasId)
 	{
-		$condition = ['id_projeto_canvas' => $projetoCanvasId, 'id_usuario' => $usuarioId];
+		$email = Usuario::getRequestedEmail();
+		$usuario = Usuario::findOne(['email' => $email, 'ativo' => Usuario::ATIVO]);
+		
+		$condition = ['id_projeto_canvas' => $projetoCanvasId, 'id_usuario' => $usuario->id];
 		$projetoCanvasCompartilhado = ProjetoCanvasCompartilhado::findOne($condition);
 		
 		return $projetoCanvasCompartilhado ? true : false;

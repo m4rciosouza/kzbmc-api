@@ -158,4 +158,16 @@ class Usuario extends \yii\db\ActiveRecord
     {
     	return ucwords(substr(md5(time() + uniqid()), 24));
     }
+    
+    /**
+     * Retorna o email do usuario buscando o valor na 
+     * requisicao GET e POST.
+     * 
+     * @return string $email
+     */
+    public static function getRequestedEmail() 
+    {
+    	return Yii::$app->request->getQueryParam('email', 
+    					Yii::$app->request->post('email'));
+    }
 }

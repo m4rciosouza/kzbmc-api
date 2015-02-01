@@ -29,7 +29,7 @@ class ProjetoCanvasCompartilhado extends \yii\db\ActiveRecord
         return [
             [['id_projeto_canvas', 'id_usuario'], 'required'],
             [['id_projeto_canvas', 'id_usuario'], 'integer'],
-        	[['id_projeto_canvas', 'id_usuario'], 'unique', 'targetAttribute' => ['id_projeto_canvas', 'id_usuario']]
+        	//[['id_projeto_canvas', 'id_usuario'], 'unique', 'targetAttribute' => ['id_projeto_canvas', 'id_usuario']]
         ];
     }
 

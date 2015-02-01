@@ -8,6 +8,7 @@ use yii\web\Linkable;
 use yii\helpers\Url;
 use app\modules\v1\models\Usuario;
 use yii\db\Query;
+use yii\web\ForbiddenHttpException;
 
 /**
  * This is the model class for table "projeto_canvas".
@@ -135,12 +136,17 @@ class ProjetoCanvas extends \yii\db\ActiveRecord
     	}
     }
     
-    public static function findOne($id)
+    public static function findOne($id, $validateUser=true)
     {    	
-    	// adiciona id do usuario a busca do projeto
-    	$email = Yii::$app->request->getQueryParam('email', 
-    						Yii::$app->request->post('email'));
-    	$usuario = Usuario::findOne(['email' => $email]);
-    	return parent::findOne(['id' => $id, 'id_usuario' => $usuario->id]);
+    	$condition = ['id' => $id];
+    	if($validateUser) {
+	    	$email = Usuario::getRequestedEmail();
+	    	$usuario = Usuario::findOne(['email' => $email, 'ativo' => Usuario::ATIVO]);
+	    	if(!$usuario) {
+	    		throw new ForbiddenHttpException('Not allowed', 403);
+	    	}
+	    	$condition['id_usuario'] = $usuario->id;
+    	}
+    	return parent::findOne($condition);
     }
 }

@@ -38,7 +38,7 @@ class ProjetoCanvasController extends ActiveController
 	public function prepareDataProviderIndex()
 	{
 		$condition = ['ativo' => 'S'];
-		$email = \Yii::$app->request->get('email', null);
+		$email = Usuario::getRequestedEmail();
 		if($email !== null) {
 			$usuario = Usuario::findOne(['email' => $email, 'ativo' => Usuario::ATIVO]);
 			$condition['id_usuario'] = $usuario ? $usuario->id : -1;

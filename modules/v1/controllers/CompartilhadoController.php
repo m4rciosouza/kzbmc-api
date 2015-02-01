@@ -9,6 +9,7 @@ use app\modules\v1\models\ProjetoCanvasCompartilhado;
 use app\modules\v1\models\Usuario;
 use yii\web\HttpException;
 use Yii;
+use yii\helpers\VarDumper;
 
 class CompartilhadoController extends ActiveController
 {
@@ -42,9 +43,9 @@ class CompartilhadoController extends ActiveController
 	public function prepareDataProviderIndex()
 	{
 		$condition = [];
-		$email = \Yii::$app->request->get('email', null);
+		$email = Usuario::getRequestedEmail();
 		if($email !== null) {
-			$usuario = Usuario::findOne(['email' => $email]);
+			$usuario = Usuario::findOne(['email' => $email, 'ativo' => Usuario::ATIVO]);
 			$condition['id_usuario'] = $usuario ? $usuario->id : -1;
 		}
 		return new ActiveDataProvider([
@@ -68,8 +69,8 @@ class CompartilhadoController extends ActiveController
 			return true;
 		}
 		
-		$idProjetoCanvas = Yii::$app->request->post('idProjetoCanvas', null);
-		$email = Yii::$app->request->post('emailCompartilhar', null);
+		$idProjetoCanvas = Yii::$app->request->post('idProjetoCanvas');
+		$email = Yii::$app->request->post('emailCompartilhar');
 		$lingua = Yii::$app->request->post('lingua', Usuario::LINGUA_EN);
 		$senha = '';
 		
@@ -77,7 +78,6 @@ class CompartilhadoController extends ActiveController
 		if(!$projetoCanvas) {
 			throw new HttpException(400, Yii::t('projeto_canvas_compartilhado', 'Error sharing project'), 400);
 		}
-		
 		$usuario = Usuario::findOne(['email' => $email]);
 		if(!$usuario) {
 			$senha = Usuario::gerarSenha();
@@ -121,6 +121,8 @@ class CompartilhadoController extends ActiveController
 	 */
 	private function criarProjetoCanvasCompartilhado($idProjetoCanvas, $idUsuario)
 	{
+		ProjetoCanvasCompartilhado::deleteAll(['id_projeto_canvas' => $idProjetoCanvas, 'id_usuario' => $idUsuario]);
+		
 		$projetoCanvasCompartilhado = new ProjetoCanvasCompartilhado();
 		$projetoCanvasCompartilhado->id_projeto_canvas = $idProjetoCanvas;
 		$projetoCanvasCompartilhado->id_usuario = $idUsuario;
@@ -147,6 +149,7 @@ class CompartilhadoController extends ActiveController
 		$usuario->lingua = $lingua;
 		$usuario->ativo = Usuario::ATIVO;
 		if(!$usuario->save()) {
+			return ['aqui' => VarDumper::dumpAsString($usuario->getErrors())];
 			throw new HttpException(400, Yii::t('projeto_canvas_compartilhado', 'Error sharing project'), 400);
 		}
 		return $usuario;
