@@ -24,13 +24,6 @@ class User extends \yii\base\Object implements \yii\web\IdentityInterface
             'authKey' => 'test100key',
             'accessToken' => '100-token',
         ],
-        '101' => [
-            'id' => '101',
-            'username' => 'demo',
-            'password' => 'demo',
-            'authKey' => 'test101key',
-            'accessToken' => '101-token',
-        ],
     ];
 
     /**
@@ -50,22 +43,18 @@ class User extends \yii\base\Object implements \yii\web\IdentityInterface
     		$tokenData = JWT::decode($token, Yii::$app->params['jwt_key']);
     	}
     	catch(\Exception $e) {
-    		throw new UnauthorizedHttpException('Not allowed', 401);
+    		throw new UnauthorizedHttpException('Unauthorized', 401);
     	}
     	
     	static::validateQueryEmail($tokenData->iss);
     	
-    	// validate the token data
-    	if($tokenData->exp >= time() /*&& $tokenData->ip == Usuario::getIp() &&
-    			$tokenData->user_agent == Usuario::getUserAgent()*/) {
-    		return new static(self::$users[100]);
-    		/*return [
-			            'id' => $tokenData->id,
-			            'username' => $tokenData->iss,
-			            'password' => 'admin',
-			            'authKey' => 'test100key',
-			            'accessToken' => '100-token',
-			        ];*/
+    	$usuario = Usuario::findOne(['email' => $tokenData->iss]);
+    	if($usuario->token == $token && $tokenData->exp >= time()) {
+    		$usuario->token = $usuario->generateJwtToken();
+    		if($usuario->save()) {
+	    		header("X-Token: {$usuario->token}");
+	    		return new static(self::$users[100]);
+    		}
     	}
         return null;
     }
@@ -73,13 +62,13 @@ class User extends \yii\base\Object implements \yii\web\IdentityInterface
     protected static function validateQueryEmail($userEmail)
     {
     	$email = null;
-    	if(Yii::$app->request->getIsGet()) {
+    	if(Yii::$app->request->getIsGet() || Yii::$app->request->getIsDelete()) {
     		$email = Yii::$app->request->getQueryParam('email');
     	}
-    	if(Yii::$app->request->getIsPost()) {
+    	if(Yii::$app->request->getIsPost() || Yii::$app->request->getIsPut()) {
     		$email = Yii::$app->request->post('email');
     	}
-    	if(!is_null($email) && $email != $userEmail) {
+    	if(/*!is_null($email) &&*/ $email != $userEmail) {
     		throw new ForbiddenHttpException('Not allowed', 403);
     	}
     }

@@ -12,6 +12,7 @@ use JWT;
  * @property string $email
  * @property string $senha
  * @property string $ativo
+ * @property string $token
  * @property string $lingua
  * @property string $data_criacao
  */
@@ -39,7 +40,7 @@ class Usuario extends \yii\db\ActiveRecord
         return [
             [['email'], 'required'],
         	[['senha'], 'required', 'on' => ['insert']],
-            [['data_criacao'], 'safe'],
+            [['data_criacao', 'token'], 'safe'],
             [['email'], 'string', 'max' => 200],
         	[['email'], 'unique'],
             [['senha'], 'string', 'max' => 32],
@@ -58,6 +59,7 @@ class Usuario extends \yii\db\ActiveRecord
             'email' => Yii::t('usuario', 'Email'),
             'senha' => Yii::t('usuario', 'Senha'),
             'ativo' => Yii::t('usuario', 'Ativo'),
+        	'token' => Yii::t('usuario', 'Token'),
             'lingua' => Yii::t('usuario', 'Lingua'),
             'data_criacao' => Yii::t('usuario', 'Data Criacao'),
         ];

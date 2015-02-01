@@ -30,11 +30,13 @@ class ItemCanvasController extends ActiveController
 		];
 	}
 	
-	public function actionBuscarPorIdProjetoCanvas($id, $email)
+	public function actionBuscarPorIdProjetoCanvas($id)
 	{
+		$email = \Yii::$app->request->getQueryParam('email',
+				\Yii::$app->request->post('email'));
 		$usuario = Usuario::findOne(['email' => $email, 'ativo' => Usuario::ATIVO]);
 		$modoLeitura = $this->possuiProjetoCompartilhado($id, $usuario->id);
-		$projetoCanvas = $this->validarAcessoProjetoCanvas($id, $usuario->id, $modoLeitura);		
+		$projetoCanvas = $this->validarAcessoProjetoCanvas($id, $usuario->id, $modoLeitura);
 		
 		$itensCanvas = ItemCanvas::findAll(['id_projeto_canvas' => (int) $id]);
 		$itens = $this->getItensCanvasFormatados($itensCanvas);

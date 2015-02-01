@@ -109,11 +109,38 @@ class ProjetoCanvas extends \yii\db\ActiveRecord
     
     public function validarUsuario($attribute, $params)
     {
-    	$usuario = Usuario::findOne(['email' => $this->email]);
+    	$usuario = Usuario::findOne(['email' => $this->email, 'ativo' => Usuario::ATIVO]);
     	if($usuario) {
     		$this->id_usuario = $usuario->id;
     		return;
     	}
     	$this->addError('id_usuario', Yii::t('projeto_canvas', 'Usuario invalido'));
+    }
+    
+    public function beforeDelete()
+    {
+    	if (parent::beforeDelete()) {
+    		// valida se projeto pertence ao usuario
+    		$email = Yii::$app->request->getQueryParam('email');
+    		$usuario = Usuario::findOne(['email' => $email, 'ativo' => Usuario::ATIVO]);
+    		if($usuario->id != $this->id_usuario) {
+    			return false;
+    		}   		
+    		// remove dependencias
+    		ItemCanvas::deleteAll(['id_projeto_canvas' => $this->id]);
+    		ProjetoCanvasCompartilhado::deleteAll(['id_projeto_canvas' => $this->id]);
+    		return true;
+    	} else {
+    		return false;
+    	}
+    }
+    
+    public static function findOne($id)
+    {    	
+    	// adiciona id do usuario a busca do projeto
+    	$email = Yii::$app->request->getQueryParam('email', 
+    						Yii::$app->request->post('email'));
+    	$usuario = Usuario::findOne(['email' => $email]);
+    	return parent::findOne(['id' => $id, 'id_usuario' => $usuario->id]);
     }
 }

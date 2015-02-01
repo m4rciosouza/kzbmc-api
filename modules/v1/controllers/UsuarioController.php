@@ -8,6 +8,7 @@ use yii\data\ActiveDataProvider;
 use app\modules\v1\models\Usuario;
 use yii\web\UnauthorizedHttpException;
 use yii\web\BadRequestHttpException;
+use yii\web\HttpException;
 
 class UsuarioController extends ActiveController
 {
@@ -50,8 +51,12 @@ class UsuarioController extends ActiveController
 		$senha = Yii::$app->request->getBodyParam('senha');
         $usuario = Usuario::findOne(['email' => $email]);
         if($usuario && $usuario->senha == md5($senha) &&
-        	$usuario->ativo == Usuario::ATIVO) {
-        	return ['token' => $usuario->generateJwtToken()];
+        		$usuario->ativo == Usuario::ATIVO) {
+        	$usuario->token = $usuario->generateJwtToken();
+        	if(!$usuario->save()) {
+        		throw new HttpException(500, 'Internal error');
+        	}
+        	return ['token' => $usuario->token];
         }
         throw new UnauthorizedHttpException('Bad credentials', 401);
 	}
