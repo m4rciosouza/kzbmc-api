@@ -68,7 +68,7 @@ class User extends \yii\base\Object implements \yii\web\IdentityInterface
     	if(Yii::$app->request->getIsPost() || Yii::$app->request->getIsPut()) {
     		$email = Yii::$app->request->post('email');
     	}
-    	if(/*!is_null($email) &&*/ $email != $userEmail) {
+    	if($email != $userEmail) {
     		throw new ForbiddenHttpException('Not allowed', 403);
     	}
     }

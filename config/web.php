@@ -49,7 +49,8 @@ $config = [
     									'app' => 'app.php',
     									'projeto_canvas' => 'projeto_canvas.php',
     									'usuario' => 'usuario.php',
-    									'item_canvas' => 'item_canvas.php'
+    									'item_canvas' => 'item_canvas.php',
+    									'slideshow' => 'slideshow.php'
     							],
     					],
     			],
@@ -85,6 +86,9 @@ $config = [
 	    							'POST,OPTIONS sincronizar-servidor' => 'sincronizar-servidor',
 	    							'POST,OPTIONS sincronizar-cliente' => 'sincronizar-cliente'
 	    						]
+    					],
+    					['class' => 'yii\rest\UrlRule',
+    						'controller' => 'v1/slideshow',
     					],
     					// backend routes
     					['class' => 'yii\web\UrlRule', 'pattern' => '<controller:\w+>', 'route' => '<controller>/index'],
