@@ -10,4 +10,11 @@ class DefaultController extends Controller
     {
         return $this->render('index');
     }
+    
+    public function actionError()
+    {
+    	$exception = \Yii::$app->errorHandler->exception;
+    	echo "{$exception->statusCode} - {$exception->getName()}";
+    	\Yii::$app->end();
+    }
 }

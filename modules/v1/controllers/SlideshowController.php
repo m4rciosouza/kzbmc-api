@@ -9,6 +9,8 @@ use app\modules\v1\models\Usuario;
 use Yii;
 use yii\web\Response;
 use yii\web\ForbiddenHttpException;
+use JWT;
+use yii\web\UnauthorizedHttpException;
 
 class SlideshowController extends ActiveController
 {
@@ -20,6 +22,7 @@ class SlideshowController extends ActiveController
 	{
 		parent::init();
 		Yii::$app->response->format = Response::FORMAT_HTML;
+		Yii::$app->errorHandler->errorAction = 'v1/default/error';
 	}
 	
 	public function behaviors()
@@ -28,9 +31,6 @@ class SlideshowController extends ActiveController
 				'corsFilter' => [
 						'class' => \yii\filters\Cors::className(),
 				],
-				'authenticator' => [
-						'class' => HttpJwtAuth::className(),
-				]
 		];
 	}
 	
@@ -44,6 +44,7 @@ class SlideshowController extends ActiveController
 	
 	public function prepareDataProviderIndex()
 	{
+		$this->validarSessao();
 		$id = Yii::$app->request->getQueryParam('id');
 		$projetoCanvas = ProjetoCanvas::findOne($id);
 		
@@ -53,5 +54,20 @@ class SlideshowController extends ActiveController
 		
 		return $this->render('index', ['projeto' => $projetoCanvas, 
 						'itens' => $projetoCanvas->getItens()]);
+	}
+	
+	private function validarSessao()
+	{
+		$email = Usuario::getRequestedEmail();
+		$usuario = Usuario::findOne(['email' => $email, 'ativo' => Usuario::ATIVO]);
+		if(!$usuario) {
+			throw new UnauthorizedHttpException('Unauthorized', 401);
+		}
+		try {
+			$tokenData = JWT::decode($usuario->token, Yii::$app->params['jwt_key']);
+		}
+		catch(\Exception $e) {
+			throw new UnauthorizedHttpException('Unauthorized', 401);
+		}
 	}
 }
