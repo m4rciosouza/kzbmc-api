@@ -77,7 +77,9 @@ $config = [
     						'controller' => 'v1/usuario',
     						'extraPatterns' => [
     								'POST,OPTIONS auth' => 'autenticar', 
-    								'POST,OPTIONS esqueci-senha' => 'esqueci-senha'
+    								'POST,OPTIONS esqueci-senha' => 'esqueci-senha',
+    								'POST,OPTIONS nova-senha' => 'nova-senha',
+    								'POST,OPTIONS trocar-senha' => 'trocar-senha'
     							]
     					],
     					['class' => 'yii\rest\UrlRule',
