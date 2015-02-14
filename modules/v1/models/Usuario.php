@@ -4,6 +4,7 @@ namespace app\modules\v1\models;
 
 use Yii;
 use JWT;
+use yii\web\UnauthorizedHttpException;
 
 /**
  * This is the model class for table "usuario".
@@ -14,6 +15,8 @@ use JWT;
  * @property string $ativo
  * @property string $token
  * @property string $lingua
+ * @property integer $plano_assinatura
+ * @property string $data_exp_assinatura
  * @property string $data_criacao
  */
 class Usuario extends \yii\db\ActiveRecord
@@ -23,6 +26,9 @@ class Usuario extends \yii\db\ActiveRecord
 	const LINGUA_EN = 'en';
 	const LINGUA_PT = 'pt';
 	const LINGUA_ES = 'es';
+	
+	const PLANO_BASICO = 0;
+	const PLANO_PREMIUM = 1;
 	
     /**
      * @inheritdoc

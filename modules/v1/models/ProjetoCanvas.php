@@ -136,6 +136,45 @@ class ProjetoCanvas extends \yii\db\ActiveRecord
     	}
     }
     
+    public function beforeSave($insert)
+    {
+    	if (parent::beforeSave($insert)) {
+    		$usuario = Usuario::findOne($this->id_usuario);
+    		if($insert) { 
+    			if($this->possuiPlanoBasico($usuario) || !$this->possuiPlanoPremiumValido($usuario)) {
+	    			$numProjetos = ProjetoCanvas::find()->where('id_usuario=:id_usuario', 
+	    								[':id_usuario' => $this->id_usuario])->count();
+	    			if($numProjetos >= 1) {
+	    				throw new ForbiddenHttpException('Not allowed', 403);
+	    			}
+    			}
+    		}
+    		return true;
+    	}
+    	else {
+    		return false;
+    	}
+    }
+    
+    private function possuiPlanoBasico($usuario)
+    {
+    	return $usuario->plano_assinatura == Usuario::PLANO_BASICO;
+    }
+    
+    private function possuiPlanoPremium($usuario)
+    {
+    	return $usuario->plano_assinatura == Usuario::PLANO_PREMIUM;
+    }
+    
+    private function possuiPlanoPremiumValido($usuario)
+    {
+    	if(!$this->possuiPlanoPremium($usuario)) {
+    		return false;
+    	}
+    	
+    	return strtotime($usuario->data_exp_assinatura) >= time();
+    }
+    
     public static function findOne($id, $validateUser=true)
     {    	
     	$condition = ['id' => $id];
