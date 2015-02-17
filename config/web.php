@@ -5,7 +5,7 @@ $params = require(__DIR__ . '/params.php');
 $config = [
     'id' => 'basic',
     'basePath' => dirname(__DIR__),
-	'language' => 'pt-BR',
+	'language' => 'en',
     'bootstrap' => ['log'],
     'components' => [
         'request' => [
@@ -45,6 +45,7 @@ $config = [
     				'translations' => [
     					'*' => [
     							'class' => 'yii\i18n\PhpMessageSource',
+    							//'sourceLanguage' => 'en-US',
     							'fileMap' => [
     									'app' => 'app.php',
     									'projeto_canvas' => 'projeto_canvas.php',
@@ -58,7 +59,7 @@ $config = [
     	'urlManager' => [
     			'enablePrettyUrl' => true,
     			'enableStrictParsing' => true,
-    			'showScriptName' => true,
+    			'showScriptName' => false,
     			'rules' => [
     					// RestFul routes
     					['class' => 'yii\rest\UrlRule',
@@ -97,6 +98,7 @@ $config = [
     					['class' => 'yii\web\UrlRule', 'pattern' => '<controller:\w+>/<id:\d+>', 'route' => '<controller>/view'],
     					['class' => 'yii\web\UrlRule', 'pattern' => '<controller:\w+>/<action:\w+>/<id:\d+>', 'route' => '<controller>/<action>'],
     					['class' => 'yii\web\UrlRule', 'pattern' => '<controller:\w+>/<action:\w+>', 'route' => '<controller>/<action>'],
+    					'/' => 'site/index',
     			],
     	]
     ],

@@ -5,18 +5,28 @@ namespace app\controllers;
 use Yii;
 use app\models\ProjetoCanvasCompartilhado;
 use app\models\ProjetoCanvasCompartilhadoSearch;
-use yii\web\Controller;
+use app\controllers\CoreController;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\filters\AccessControl;
 
 /**
  * ProjetoCanvasCompartilhadoController implements the CRUD actions for ProjetoCanvasCompartilhado model.
  */
-class ProjetoCanvasCompartilhadoController extends Controller
+class ProjetoCanvasCompartilhadoController extends CoreController
 {
     public function behaviors()
     {
         return [
+        	'access' => [
+        			'class' => AccessControl::className(),
+        			'rules' => [
+        					[
+        							'allow' => true,
+        							'roles' => ['@'],
+        					],
+        			],
+        	],
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [

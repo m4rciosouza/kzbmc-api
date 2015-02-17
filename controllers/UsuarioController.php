@@ -5,7 +5,7 @@ namespace app\controllers;
 use Yii;
 use app\models\Usuario;
 use app\models\UsuarioSearch;
-use yii\web\Controller;
+use app\controllers\CoreController;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
@@ -13,7 +13,7 @@ use yii\filters\AccessControl;
 /**
  * UsuarioController implements the CRUD actions for Usuario model.
  */
-class UsuarioController extends Controller
+class UsuarioController extends CoreController
 {
 	public function behaviors()
     {

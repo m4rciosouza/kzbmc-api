@@ -5,7 +5,7 @@ namespace app\controllers;
 use Yii;
 use app\models\ItemCanvas;
 use app\models\ItemCanvasSearch;
-use yii\web\Controller;
+use app\controllers\CoreController;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
@@ -13,7 +13,7 @@ use yii\filters\AccessControl;
 /**
  * ItemCanvasController implements the CRUD actions for ItemCanvas model.
  */
-class ItemCanvasController extends Controller
+class ItemCanvasController extends CoreController
 {
 	public function behaviors()
     {
