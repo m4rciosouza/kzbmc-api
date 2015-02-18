@@ -77,13 +77,15 @@ class UsuarioController extends ActiveController
 		$usuario->ativo = Usuario::INATIVO;
 		$usuario->save();
 
-		$url = "http://localhost:9000/#/nova-senha/usuario/{$usuario->email}/token/$token";
-		
-		Yii::$app->mailer->compose()
+		Yii::$app->language = $usuario->lingua;
+		$url = "app/#/nova-senha/usuario/{$usuario->email}/token/$token";
+		Yii::$app->mailer->compose('esqueci-senha', [
+				'email' => $email,
+				'url' => $url,
+			])
 			->setFrom(Yii::$app->params['adminEmail'])
 			->setTo($email)
-			->setSubject('Recuperar Senha')
-			->setHtmlBody('<b>Clique no link <a href="' . $url . '">AQUI</a> para definir uma nova senha.</b>')
+			->setSubject(Yii::t('app', 'KZ-Canvas - recuperar senha'))
 			->send();
 		
 		Yii::$app->end();

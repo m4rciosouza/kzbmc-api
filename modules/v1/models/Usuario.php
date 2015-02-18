@@ -73,7 +73,7 @@ class Usuario extends \yii\db\ActiveRecord
     
     public function beforeSave($insert)
     {
-    	if (parent::beforeSave($insert)) {
+    	if(parent::beforeSave($insert)) {
 	    	if($insert || strlen($this->senha) < 32) {
 	    		if(empty($this->senha)) {
 		    		$usuario = $this->findOne($this->id);
@@ -175,5 +175,25 @@ class Usuario extends \yii\db\ActiveRecord
     {
     	return Yii::$app->request->getQueryParam('email', 
     					Yii::$app->request->post('email'));
+    }
+    
+    public function afterSave($insert, $changedAttributes)
+    {
+    	parent::afterSave($insert, $changedAttributes);
+    	if($insert) {
+    		$this->enviarEmailBoasVindas();
+    	}
+    }
+    
+    private function enviarEmailBoasVindas()
+    {
+    	Yii::$app->language = $this->lingua;
+    	Yii::$app->mailer->compose('bem-vindo', [
+    	'email' => $this->email
+    	])
+    	->setFrom(Yii::$app->params['adminEmail'])
+    	->setTo($this->email)
+    	->setSubject(Yii::t('app', 'KZ-Canvas - bem vindo'))
+    	->send();
     }
 }
