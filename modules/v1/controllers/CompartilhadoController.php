@@ -85,6 +85,7 @@ class CompartilhadoController extends ActiveController
 		}
 		
 		$projetoCanvasCompartilhado = $this->criarProjetoCanvasCompartilhado($idProjetoCanvas, $usuario->id);
+		Yii::$app->language = $usuario->lingua;
 		$this->enviarEmailNotificacao($email, $projetoCanvas->nome, $senha);
 		
 		return $projetoCanvasCompartilhado;
@@ -100,14 +101,14 @@ class CompartilhadoController extends ActiveController
 	 */
 	private function enviarEmailNotificacao($email, $nomeProjetoCanvas, $senha)
 	{
-		Yii::$app->mailer->compose()
+		Yii::$app->mailer->compose('projeto-compartilhado', [
+			    'nomeProjetoCanvas' => $nomeProjetoCanvas,
+			    'email' => $email,
+			    'senha' => $senha,
+			])
 			->setFrom(Yii::$app->params['adminEmail'])
 			->setTo($email)
-			->setSubject(Yii::t('projeto_canvas_compartilhado', 'KZ-Canvas - um projeto foi compartilhado com você'))
-			->setHtmlBody('<b>O projeto '.$nomeProjetoCanvas.' foi compartilhado com você.</b><br /><br />' .
-					'Acesse <a href="http://kazale.com">http://kazale.com</a> para visualizar o projeto compartilhado.<br /><br />'.
-					'Utilize os seguintes dados para logar no sistema:<br /><br />' .
-					'Usuario: ' . $email . '<br />Senha: ' . (empty($senha) ? 'Sua senha' : $senha))
+			->setSubject(Yii::t('app', 'KZ-Canvas - um projeto foi compartilhado com voce'))
 			->send();
 	}
 	

@@ -8,7 +8,8 @@ class DefaultController extends Controller
 {
     public function actionIndex()
     {
-        return $this->render('index');
+    	\Yii::$app->end();
+        //return $this->render('index');
     }
     
     public function actionError()
