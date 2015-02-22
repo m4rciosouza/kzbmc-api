@@ -3,16 +3,16 @@
 namespace app\modules\v1\controllers;
 
 use yii\rest\ActiveController;
-use app\modules\v1\models\ProjetoCanvas;
+use app\modules\v1\models\ProjetoCanvasLean;
 use yii\data\ActiveDataProvider;
-use app\modules\v1\models\ProjetoCanvasCompartilhado;
+use app\modules\v1\models\ProjetoCanvasCompartilhadoLean;
 use app\modules\v1\models\Usuario;
 use yii\web\HttpException;
 use Yii;
 
-class CompartilhadoController extends ActiveController
+class CompartilhadoLeanController extends ActiveController
 {
-	public $modelClass = 'app\modules\v1\models\ProjetoCanvasCompartilhado';
+	public $modelClass = 'app\modules\v1\models\ProjetoCanvasCompartilhadoLean';
 	
 	public $serializer = [
 			'class' => 'yii\rest\Serializer',
@@ -48,7 +48,7 @@ class CompartilhadoController extends ActiveController
 			$condition['id_usuario'] = $usuario ? $usuario->id : -1;
 		}
 		return new ActiveDataProvider([
-				'query' => ProjetoCanvasCompartilhado::find()->where($condition),
+				'query' => ProjetoCanvasCompartilhadoLean::find()->where($condition),
 		]);
 	}
 	
@@ -73,7 +73,7 @@ class CompartilhadoController extends ActiveController
 		$lingua = Yii::$app->request->post('lingua', Usuario::LINGUA_EN);
 		$senha = '';
 		
-		$projetoCanvas = ProjetoCanvas::findOne(['id' => $idProjetoCanvas]);
+		$projetoCanvas = ProjetoCanvasLean::findOne(['id' => $idProjetoCanvas]);
 		if(!$projetoCanvas) {
 			throw new HttpException(400, Yii::t('projeto_canvas_compartilhado', 'Error sharing project'), 400);
 		}
@@ -121,9 +121,9 @@ class CompartilhadoController extends ActiveController
 	 */
 	private function criarProjetoCanvasCompartilhado($idProjetoCanvas, $idUsuario)
 	{
-		ProjetoCanvasCompartilhado::deleteAll(['id_projeto_canvas' => $idProjetoCanvas, 'id_usuario' => $idUsuario]);
+		ProjetoCanvasCompartilhadoLean::deleteAll(['id_projeto_canvas' => $idProjetoCanvas, 'id_usuario' => $idUsuario]);
 		
-		$projetoCanvasCompartilhado = new ProjetoCanvasCompartilhado();
+		$projetoCanvasCompartilhado = new ProjetoCanvasCompartilhadoLean();
 		$projetoCanvasCompartilhado->id_projeto_canvas = $idProjetoCanvas;
 		$projetoCanvasCompartilhado->id_usuario = $idUsuario;
 		if(!$projetoCanvasCompartilhado->save()) {

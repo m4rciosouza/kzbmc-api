@@ -75,6 +75,18 @@ $config = [
     					 	'extraPatterns' => ['GET,OPTIONS projeto-canvas/{id}' => 'buscar-por-id-projeto-canvas']
     					],
     					['class' => 'yii\rest\UrlRule',
+	    					'controller' => 'v1/projeto-canvas-lean',
+	    					'extraPatterns' => ['GET,OPTIONS usuario/{id}' => 'buscar-por-id-usuario']
+    					],
+    					['class' => 'yii\rest\UrlRule',
+	    					'controller' => 'v1/item-canvas-lean',
+	    					'extraPatterns' => ['GET,OPTIONS projeto-canvas/{id}' => 'buscar-por-id-projeto-canvas']
+    					],
+    					['class' => 'yii\rest\UrlRule',
+    					'controller' => 'v1/compartilhado-lean',
+    					'extraPatterns' => ['POST,OPTIONS compartilhar' => 'compartilhar']
+    					],
+    					['class' => 'yii\rest\UrlRule',
     						'controller' => 'v1/usuario',
     						'extraPatterns' => [
     								'POST,OPTIONS auth' => 'autenticar', 
