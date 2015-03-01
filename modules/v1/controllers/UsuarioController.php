@@ -78,7 +78,7 @@ class UsuarioController extends ActiveController
 		$usuario->save();
 
 		Yii::$app->language = $usuario->lingua;
-		$url = "app/#/nova-senha/usuario/{$usuario->email}/token/$token";
+		$url = "http://businessmodel.kazcanvas.com/#/nova-senha/usuario/{$usuario->email}/token/$token";
 		Yii::$app->mailer->compose('esqueci-senha', [
 				'email' => $email,
 				'url' => $url,

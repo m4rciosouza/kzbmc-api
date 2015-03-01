@@ -14,7 +14,7 @@ use yii\helpers\Url;
 <br />
 <p>
 	<?= Yii::t('app', 'Acesse {url} para definir uma nova senha.', 
-						['url' => Html::a(Yii::t('app', 'AQUI'), Url::home('http') . $url)]); ?>
+						['url' => Html::a(Yii::t('app', 'AQUI'), /*Url::home('http') .*/ $url)]); ?>
 </p>
 <br />
 <p>

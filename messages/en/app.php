@@ -1,6 +1,6 @@
 <?php
 return [
-		'KZ-Canvas' => 'KZ-Canvas',
+		'KAZ-Canvas' => 'KAZ-Canvas',
 		'Selecione um modelo para iniciar!' => 'Choose a model to start!',
 		'Canvas de Modelo de Negocios' => 'Business Model Canvas',
 		'Lean Model Canvas' => 'Lean Model Canvas',
@@ -8,9 +8,9 @@ return [
 		'Portugues' => 'Portuguese',
 		'Ingles' => 'English',
 		'Espanhol' => 'Spanish',
-		'Equipe KZ-Canvas.' => 'KZ-Canvas team.',
+		'Equipe KZ-Canvas.' => 'KAZ-Canvas team.',
 		// email projeto compartilhado
-		'KZ-Canvas - um projeto foi compartilhado com voce' => 'KZ-Canvas - a project has been shared with you',
+		'KZ-Canvas - um projeto foi compartilhado com voce' => 'KAZ-Canvas - a project has been shared with you',
 		'O projeto {nomeProjetoCanvas} foi compartilhado com voce.' => 'The project {nomeProjetoCanvas} has been shared with you.',
 		'Acesse {url} para visualizar o projeto compartilhado.' => 'Click {url} to visualize the shared project.',
 		'AQUI' => 'HERE',
@@ -19,13 +19,14 @@ return [
 		'Senha' => 'Password',
 		'Sua senha' => 'Your password',
 		// email para recuperar senha
-		'KZ-Canvas - recuperar senha' => 'KZ-Canvas - forgot password',
+		'KZ-Canvas - recuperar senha' => 'KAZ-Canvas - forgot password',
 		'Uma solicitacao de troca de senha foi efetuada para o usuario' => 'A password recovery request has been done by the user',
 		'Acesse {url} para definir uma nova senha.' => 'Click {url} to define a new password.',
 		'Caso voce nao tenha solicitado a troca, pedimos que desconsidere esta mensagem.' => 
 					'If you have not requested the password recovery, please disregard this message.',
 		// bem vindo
-		'Seja bem vindo ao KZ-Canvas!' => 'Welcome to KZ-Canvas!',
+		'KZ-Canvas - bem vindo' => 'KAZ-Canvas - welcome',
+		'Seja bem vindo ao KZ-Canvas!' => 'Welcome to KAZ-Canvas!',
 		'A partir de agora voce tera acesso a uma poderosa ferramenta de criacao de modelos canvas.' =>
 				'From now you will have access to a powerful model canvas creation tool.',
 		'Acesse {url} para comecar a criar seus modelos canvas.' => 'Click {url} to start creating your models canvas.',

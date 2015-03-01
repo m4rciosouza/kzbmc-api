@@ -16,6 +16,7 @@ AppAsset::register($this);
 <head>
     <meta charset="<?= Yii::$app->charset ?>"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/x-icon" href="<?= Yii::$app->homeUrl; ?>favicon.ico" />
     <?= Html::csrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
@@ -26,7 +27,7 @@ AppAsset::register($this);
     <div class="wrap">
         <?php
             NavBar::begin([
-                'brandLabel' => Yii::t('app', 'KZ-Canvas'),
+                'brandLabel' => Yii::t('app', 'KAZ-Canvas'),
                 'brandUrl' => Yii::$app->homeUrl.'site',
                 'options' => [
                     'class' => 'navbar-inverse navbar-fixed-top',
@@ -103,7 +104,14 @@ AppAsset::register($this);
 
     <footer class="footer">
         <div class="container">
-            <p class="pull-left">&copy; KZ-Canvas <?= date('Y') ?></p>
+            <p class="pull-left">
+            	&copy; 
+            	<a href="http://kazcanvas.com" alt="<?= Yii::t('app', 'KAZ-Canvas'); ?>" 
+            		title="<?= Yii::t('app', 'KAZ-Canvas'); ?>">
+            		<?= Yii::t('app', 'KAZ-Canvas'); ?>
+            	</a> 
+            	<?= date('Y') ?>
+            </p>
             <p class="pull-right"><?= Yii::powered() ?></p>
         </div>
     </footer>
