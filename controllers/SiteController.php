@@ -49,7 +49,9 @@ class SiteController extends CoreController
 
     public function actionIndex()
     {
-        return $this->render('index');
+    	$this->layout = 'landing';
+    	return $this->render('landingIndex');
+        // return $this->render('index');
     }
 
     public function actionLogin()
