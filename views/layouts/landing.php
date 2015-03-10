@@ -54,7 +54,7 @@ use app\assets\AppAsset;
 		                <a href="#gallery">Galeria</a>
 		                <a href="#pricing">Preços</a>
 		                <a href="#contact">Contato</a>
-		                <a href="" class="kz_mouse_cursor">
+		                <a href="#" class="kz_mouse_cursor">
             				<img src="<?= Yii::$app->homeUrl; ?>images/flag_brasil.png" alt="<?= Yii::t('app', 'Portugues'); ?>" 
             					width="25" onclick="setLang('pt')" />
 					        <img src="<?= Yii::$app->homeUrl; ?>images/flag_spain.png" alt="<?= Yii::t('app', 'Espanhol'); ?>" 

@@ -9,29 +9,30 @@ $this->title = Yii::t('app', 'KAZ-Canvas');
                 <ul class="slides">
                     <li class="slide row-fluid">
                         <div class="span8 offset4">
-                            <img src="http://placehold.it/960x960" height="960" width="960" alt="COMBO clean and flat design" />
+                            <img src="http://placehold.it/960x860" height="860" width="960" 
+                            	alt="<?= Yii::t('landing', 'Solucao completa para criacao de modelos canvas') ?>" />
                         </div>
                         <div class="slide-caption">
-                            <h2>COMBO <span>clean and flat</span> design</h2>
-                            <button class="button button-buy">BUY NOW</button>
+                            <h2><?= Yii::t('landing', 'Solucao completa para criacao de modelos canvas') ?></h2>
+                            <a href="#features" class="button button-buy">Testar</a>
                         </div>
                     </li>
                     <li class="slide right-dir row-fluid">                        
                         <div class="span8">
-                            <img src="http://placehold.it/960x960" height="960" width="960" alt="High-quality presentation of your Website" />
+                            <img src="http://placehold.it/960x860" height="860" width="960" alt="Canvas de Modelo de Negócios" />
                         </div>
                         <div class="slide-caption">
-                            <h2>High-quality <span>presentation of</span> your Website</h2>
-                            <a href="#" class="button button-buy">BUY NOW</a>
+                            <h2>Canvas de Modelo de Negócios</h2>
+                            <a href="#features" class="button button-buy">Testar</a>
                         </div>
                     </li>
                     <li class="slide row-fluid">
                         <div class="span8 offset4">
-                            <img src="http://placehold.it/960x960" height="960" width="960" alt="Preview your responsive Design" />
+                            <img src="http://placehold.it/960x860" height="860" width="960" alt="Lean Model Canvas" />
                         </div>
                         <div class="slide-caption">
-                            <h2>Preview your <span>responsive</span> Design</h2>
-                            <button class="button button-buy">BUY NOW</button>
+                            <h2>Lean Model Canvas</h2>
+                            <a href="#features" class="button button-buy">Testar</a>
                         </div>
                     </li>
                 </ul>
@@ -46,21 +47,37 @@ $this->title = Yii::t('app', 'KAZ-Canvas');
             <div class="row-fluid text-center">
                 <article class="span6 feature-item">
                     <div class="thumb">
-                        <i class="icon-tablet"></i>
+                    	<a href="http://businessmodel.kazcanvas.com" target="_blank">
+                        	<i class="icon-table"></i>
+                        </a>
                     </div>
                     <h3>
                     	<a href="http://businessmodel.kazcanvas.com" target="_blank">
-                    		Business Model Canvas
+                    		Canvas de Modelo<br /> de Negócios
                     	</a>
                     </h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent ut scelerisque justo.</p>
+                    <p>
+                    	<a href="http://businessmodel.kazcanvas.com" target="_blank">
+                    		Ferramenta de criação de Canvas de Modelo de Negócios online.
+                    	</a>
+                    </p>
                 </article>
                 <article class="span6 feature-item">
                     <div class="thumb">
-                        <i class="icon-cogs"></i>
+                    	<a href="http://leanmodel.kazcanvas.com" target="_blank">
+                        	<i class="icon-th"></i>
+                        </a>
                     </div>
-                    <h3>Lean Model Canvas</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent ut scelerisque justo.</p>
+                    <h3>
+                    	<a href="http://leanmodel.kazcanvas.com" target="_blank">
+                    		Lean Model<br /> Canvas
+                    	</a>
+                    </h3>
+                    <p>
+                    	<a href="http://leanmodel.kazcanvas.com" target="_blank">
+                    		Ferramenta de criação de Lean Model Canvas online.
+                    	</a>
+                    </p>
                 </article>
             </div>
         </section>
@@ -82,25 +99,41 @@ $this->title = Yii::t('app', 'KAZ-Canvas');
             <div class="row-fluid text-center">
                 <article class="span3 team-item">
                     <figure>
-                        <span class="team-img"><img src="http://placehold.it/160x160" height="160" width="160" alt="Ron Denver" /></span>
+                        <span class="team-img">
+                        	<div class="thumb" style="margin-bottom: 0; background: #FFF">
+		                       	<i class="icon-magic"></i>
+		                    </div>
+                        </span>
                         <figcaption><span>Assistente de criação</span></figcaption>
                     </figure>
                 </article>
                 <article class="span3 team-item">
                     <figure>
-                        <span class="team-img"><img src="http://placehold.it/160x160" height="160" width="160" alt="Ron Denver" /></span>
-                        <figcaption><span>Impressão em modo texto</span></figcaption>
+                        <span class="team-img">
+                        	<div class="thumb" style="margin-bottom: 0; background: #FFF">
+		                       	<i class="icon-print"></i>
+		                    </div>
+                        </span>
+                        <figcaption><span>Impressão em modo gráfico e texto</span></figcaption>
                     </figure>
                 </article>
                 <article class="span3 team-item">
                     <figure>
-                        <span class="team-img"><img src="http://placehold.it/160x160" height="160" width="160" alt="Ron Denver" /></span>
+                        <span class="team-img">
+                        	<div class="thumb" style="margin-bottom: 0; background: #FFF">
+		                       	<i class="icon-desktop"></i>
+		                    </div>
+                        </span>
                         <figcaption><span>Slideshow 3D</span></figcaption>
                     </figure>
                 </article>
                 <article class="span3 team-item">
                     <figure>
-                        <span class="team-img"><img src="http://placehold.it/160x160" height="160" width="160" alt="Ron Denver" /></span>
+                        <span class="team-img">
+                        	<div class="thumb" style="margin-bottom: 0; background: #FFF">
+		                       	<i class="icon-th"></i>
+		                    </div>
+                        </span>
                         <figcaption><span>Post-its ilimitados por bloco, e em 4 cores distintas</span></figcaption>
                     </figure>
                 </article>
@@ -108,27 +141,43 @@ $this->title = Yii::t('app', 'KAZ-Canvas');
             <div class="row-fluid text-center">
                 <article class="span3 team-item">
                     <figure>
-                        <span class="team-img"><img src="http://placehold.it/160x160" height="160" width="160" alt="Ron Denver" /></span>
+                        <span class="team-img">
+                        	<div class="thumb" style="margin-bottom: 0; background: #FFF">
+		                       	<i class="icon-share"></i>
+		                    </div>
+                        </span>
                         <figcaption><span>Compartilhamento com um amigo</span></figcaption>
                     </figure>
                 </article>
                 <article class="span3 team-item">
                     <figure>
-                        <span class="team-img"><img src="http://placehold.it/160x160" height="160" width="160" alt="Ron Denver" /></span>
+                        <span class="team-img">
+                        	<div class="thumb" style="margin-bottom: 0; background: #FFF">
+		                       	<i class="icon-cloud-upload"></i>
+		                    </div>
+                        </span>
                         <figcaption><span>Armazenamento na nuvem com sincronização automática entre dispositivos</span></figcaption>
                     </figure>
                 </article>
                 
                 <article class="span3 team-item">
                     <figure>
-                        <span class="team-img"><img src="http://placehold.it/160x160" height="160" width="160" alt="Ron Denver" /></span>
+                        <span class="team-img">
+                        	<div class="thumb" style="margin-bottom: 0; background: #FFF">
+		                       	<i class="icon-tablet"></i>
+		                    </div>
+                        </span>
                         <figcaption><span>Compatível com computadores e smartphones</span></figcaption>
                     </figure>
                 </article>
                 <article class="span3 team-item">
                     <figure>
-                        <span class="team-img"><img src="http://placehold.it/160x160" height="160" width="160" alt="Ron Denver" /></span>
-                        <figcaption><span>Tradução em Português, Inglês e Espanhol</span></figcaption>
+                        <span class="team-img">
+                        	<div class="thumb" style="margin-bottom: 0; background: #FFF">
+		                       	<i class="icon-globe"></i>
+		                    </div>
+                        </span>
+                        <figcaption><span>Disponível em Português, Inglês e Espanhol</span></figcaption>
                     </figure>
                 </article>
             </div>
@@ -208,19 +257,18 @@ $this->title = Yii::t('app', 'KAZ-Canvas');
                             	<a href="#features" class="button button-buy">Testar</a>
                             </li>
                             <li><i class="icon-check icon-large"></i></li>
-                            <li>1 Business Model Canvas</li>
+                            <li>1 Canvas de Modelo de<br /> Negócios</li>
                             <li>1 Lean Model Canvas</li>
                             <li>Assistente de criação</li>
-                            <li>Impressão em modo texto</li>
+                            <li>Impressão em modo gráfico/texto</li>
                             <li>Slideshow 3D</li>
-                            <li>Tradução em Português, Inglês e Espanhol</li>
+                            <li>Disponível em Português, Inglês e Espanhol</li>
                             <li>Post-its ilimitados por bloco</li>
                             <li>Post-its em 4 cores distintas</li>
                             <li>Compartilhamento com um amigo</li>
                             <li>Armazenamento na nuvem</li>
                             <li>Compatível com computadores e smartphones</li>
                             <li>Sincronização automática entre dispositivos</li>
-                            <li><i class="icon-remove-circle icon-large"></i></li>
                         </ul>
                     </div>
                 </div>
@@ -237,12 +285,12 @@ $this->title = Yii::t('app', 'KAZ-Canvas');
                             	<button class="button button-buy">Assinar</button>
                             </li>
                             <li><i class="icon-check icon-large"></i></li>
-                            <li>Business Model Canvas ilimitados</li>
-                            <li>Lean Model Canvas ilimitados</li>
+                            <li>Canvas de Modelo de Negócios <strong>ilimitados</strong></li>
+                            <li>Lean Model Canvas <strong>ilimitados</strong></li>
                             <li>Assistente de criação</li>
                             <li>Impressão em modo texto</li>
                             <li>Slideshow 3D</li>
-                            <li>Tradução em Português, Inglês e Espanhol</li>
+                            <li>Disponível em Português, Inglês e Espanhol</li>
                             <li>Post-its ilimitados por bloco</li>
                             <li>Post-its em 4 cores distintas</li>
                             <li>Compartilhamento com um amigo</li>
@@ -253,8 +301,8 @@ $this->title = Yii::t('app', 'KAZ-Canvas');
                     </div>
                 </div>
                 <div class="span4 space-limit">
-                    <h3>Assinatura contempla a utilização do <u>Business Model Canvas</u> e <u>Lean Model Canvas</u></h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent ut scelerisque justo. Integer tempor, sem et dapibus vulputate, quam elit pharetra arcu, et posuere est lectus sed enim.</p>
+                    <h3>Assinatura contempla a utilização do <strong>Canvas de Modelo de Negócios</strong> e <strong>Lean Model Canvas</strong></h3>
+                    <p>Cadastre-se e comece a construir modelos canvas agora mesmo!</p>
                 </div>
             </div>
         </section>
@@ -274,11 +322,8 @@ $this->title = Yii::t('app', 'KAZ-Canvas');
                     </p>
                 </div>
             </div>
-            <div class="contact-info row-fluid">
+            <div class="row-fluid">
                 <div class="span12">
-                    <address>
-                        Email: <a href="mailto:kazcanvas@kazcanvas.com">kazcanvas@kazcanvas.com</a>
-                    </address>
                     <form class="form" action="" id="contact-us-form">
                         <h4>Escreva para nós</h4>
                         <div class="row-fluid">

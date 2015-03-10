@@ -51,7 +51,8 @@ $config = [
     									'projeto_canvas' => 'projeto_canvas.php',
     									'usuario' => 'usuario.php',
     									'item_canvas' => 'item_canvas.php',
-    									'slideshow' => 'slideshow.php'
+    									'slideshow' => 'slideshow.php',
+    									'landing' => 'landing.php',
     							],
     					],
     			],

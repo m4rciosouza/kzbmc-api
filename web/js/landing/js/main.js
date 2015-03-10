@@ -106,15 +106,9 @@ $(window).load(function() {
 	"use strict";
 	$('#homeCarousel').flexslider({
 		'animation': "slide",
-		'slideshow': false,
+		'slideshow': true,
 		'smoothHeight': true,
 		'controlNav':  false
-	});
-	$('#servicesCarousel').flexslider({
-		'animation': "slide",
-		'slideshow': false,
-		'smoothHeight': true,
-		'directionNav': false
 	});
 });
 /* Init flexslider eof */
