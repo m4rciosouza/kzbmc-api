@@ -14,25 +14,27 @@ $this->title = Yii::t('app', 'KAZ-Canvas');
                         </div>
                         <div class="slide-caption">
                             <h2><?= Yii::t('landing', 'Solucao completa para criacao de modelos canvas') ?></h2>
-                            <a href="#features" class="button button-buy">Testar</a>
+                            <a href="#features" class="button button-buy"><?= Yii::t('landing', 'Testar') ?></a>
                         </div>
                     </li>
                     <li class="slide right-dir row-fluid">                        
                         <div class="span8">
-                            <img src="http://placehold.it/960x860" height="860" width="960" alt="Canvas de Modelo de Negócios" />
+                            <img src="http://placehold.it/960x860" height="860" width="960" 
+                            	alt="<?= Yii::t('landing', 'Canvas de Modelo de Negocios') ?>" />
                         </div>
                         <div class="slide-caption">
-                            <h2>Canvas de Modelo de Negócios</h2>
+                            <h2><?= Yii::t('landing', 'Canvas de Modelo de Negocios') ?></h2>
                             <a href="#features" class="button button-buy">Testar</a>
                         </div>
                     </li>
                     <li class="slide row-fluid">
                         <div class="span8 offset4">
-                            <img src="http://placehold.it/960x860" height="860" width="960" alt="Lean Model Canvas" />
+                            <img src="http://placehold.it/960x860" height="860" width="960" 
+                            	alt="<?= Yii::t('landing', 'Lean Model Canvas') ?>" />
                         </div>
                         <div class="slide-caption">
-                            <h2>Lean Model Canvas</h2>
-                            <a href="#features" class="button button-buy">Testar</a>
+                            <h2><?= Yii::t('landing', 'Lean Model Canvas') ?></h2>
+                            <a href="#features" class="button button-buy"><?= Yii::t('landing', 'Testar') ?></a>
                         </div>
                     </li>
                 </ul>
@@ -53,12 +55,12 @@ $this->title = Yii::t('app', 'KAZ-Canvas');
                     </div>
                     <h3>
                     	<a href="http://businessmodel.kazcanvas.com" target="_blank">
-                    		Canvas de Modelo<br /> de Negócios
+                    		<?= Yii::t('landing', 'Canvas de Modelo') ?><br /><?= Yii::t('landing', 'de Negocios') ?>
                     	</a>
                     </h3>
                     <p>
                     	<a href="http://businessmodel.kazcanvas.com" target="_blank">
-                    		Ferramenta de criação de Canvas de Modelo de Negócios online.
+                    		<?= Yii::t('landing', 'Ferramenta de criacao de Canvas de Modelo de Negocios online.') ?>
                     	</a>
                     </p>
                 </article>
@@ -70,12 +72,12 @@ $this->title = Yii::t('app', 'KAZ-Canvas');
                     </div>
                     <h3>
                     	<a href="http://leanmodel.kazcanvas.com" target="_blank">
-                    		Lean Model<br /> Canvas
+                    		<?= Yii::t('landing', 'Lean Model') ?><br /><?= Yii::t('landing', 'Canvas') ?>
                     	</a>
                     </h3>
                     <p>
                     	<a href="http://leanmodel.kazcanvas.com" target="_blank">
-                    		Ferramenta de criação de Lean Model Canvas online.
+                    		<?= Yii::t('landing', 'Ferramenta de criacao de Lean Model Canvas online.') ?>
                     	</a>
                     </p>
                 </article>
@@ -89,11 +91,8 @@ $this->title = Yii::t('app', 'KAZ-Canvas');
         <section class="section clearfix">
             <div class="row-fluid text-center">
                 <div class="span8 offset2">
-                    <h2 class="title">Características</h2>
-                    <p>
-                    	Abaixo seguem as principais características encontradas em ambos aplicativos, o Business Model Canvas e 
-                    	o Lean Model Canvas:
-                    </p>
+                    <h2 class="title"><?= Yii::t('landing', 'Caracteristicas') ?></h2>
+                    <p><?= Yii::t('landing', 'Abaixo seguem as principais caracteristicas encontradas em ambos aplicativos, o Canvas de Modelo de Negocios e o Lean Model Canvas') ?>:</p>
                 </div>
             </div>
             <div class="row-fluid text-center">
@@ -104,7 +103,7 @@ $this->title = Yii::t('app', 'KAZ-Canvas');
 		                       	<i class="icon-magic"></i>
 		                    </div>
                         </span>
-                        <figcaption><span>Assistente de criação</span></figcaption>
+                        <figcaption><span><?= Yii::t('landing', 'Assistente de criacao') ?></span></figcaption>
                     </figure>
                 </article>
                 <article class="span3 team-item">
@@ -114,7 +113,7 @@ $this->title = Yii::t('app', 'KAZ-Canvas');
 		                       	<i class="icon-print"></i>
 		                    </div>
                         </span>
-                        <figcaption><span>Impressão em modo gráfico e texto</span></figcaption>
+                        <figcaption><span><?= Yii::t('landing', 'Impressao em modo grafico e texto') ?></span></figcaption>
                     </figure>
                 </article>
                 <article class="span3 team-item">
@@ -124,7 +123,7 @@ $this->title = Yii::t('app', 'KAZ-Canvas');
 		                       	<i class="icon-desktop"></i>
 		                    </div>
                         </span>
-                        <figcaption><span>Slideshow 3D</span></figcaption>
+                        <figcaption><span><?= Yii::t('landing', 'Slideshow 3D') ?></span></figcaption>
                     </figure>
                 </article>
                 <article class="span3 team-item">
@@ -134,7 +133,7 @@ $this->title = Yii::t('app', 'KAZ-Canvas');
 		                       	<i class="icon-th"></i>
 		                    </div>
                         </span>
-                        <figcaption><span>Post-its ilimitados por bloco, e em 4 cores distintas</span></figcaption>
+                        <figcaption><span><?= Yii::t('landing', 'Post-its ilimitados por bloco, e em 4 cores distintas') ?></span></figcaption>
                     </figure>
                 </article>
             </div>
@@ -146,7 +145,7 @@ $this->title = Yii::t('app', 'KAZ-Canvas');
 		                       	<i class="icon-share"></i>
 		                    </div>
                         </span>
-                        <figcaption><span>Compartilhamento com um amigo</span></figcaption>
+                        <figcaption><span><?= Yii::t('landing', 'Compartilhamento com um amigo') ?></span></figcaption>
                     </figure>
                 </article>
                 <article class="span3 team-item">
@@ -156,7 +155,7 @@ $this->title = Yii::t('app', 'KAZ-Canvas');
 		                       	<i class="icon-cloud-upload"></i>
 		                    </div>
                         </span>
-                        <figcaption><span>Armazenamento na nuvem com sincronização automática entre dispositivos</span></figcaption>
+                        <figcaption><span><?= Yii::t('landing', 'Armazenamento na nuvem com sincronizacao automatica entre dispositivos') ?></span></figcaption>
                     </figure>
                 </article>
                 
@@ -167,7 +166,7 @@ $this->title = Yii::t('app', 'KAZ-Canvas');
 		                       	<i class="icon-tablet"></i>
 		                    </div>
                         </span>
-                        <figcaption><span>Compatível com computadores e smartphones</span></figcaption>
+                        <figcaption><span><?= Yii::t('landing', 'Compativel com computadores e smartphones') ?></span></figcaption>
                     </figure>
                 </article>
                 <article class="span3 team-item">
@@ -177,7 +176,7 @@ $this->title = Yii::t('app', 'KAZ-Canvas');
 		                       	<i class="icon-globe"></i>
 		                    </div>
                         </span>
-                        <figcaption><span>Disponível em Português, Inglês e Espanhol</span></figcaption>
+                        <figcaption><span><?= Yii::t('landing', 'Disponivel em Portugues, Ingles e Espanhol') ?></span></figcaption>
                     </figure>
                 </article>
             </div>
@@ -190,27 +189,27 @@ $this->title = Yii::t('app', 'KAZ-Canvas');
         <section class="section clearfix">
             <div class="row-fluid text-center">
                 <div class="span8 offset2">
-                    <h2 class="title">Galeria</h2>
-                    <p>Confira algumas imagens do aplicativo:</p>
+                    <h2 class="title"><?= Yii::t('landing', 'Galeria') ?></h2>
+                    <p><?= Yii::t('landing', 'Confira algumas imagens do aplicativo') ?>:</p>
                 </div>
             </div>
             <div class="gallery-list">
                 <div class="row-fluid">
                     <figure class="span4">
                         <a href="http://placehold.it/750x500.jpg">
-                            <img src="http://placehold.it/750x500" alt="Title" height="500" width="750" />
+                            <img src="http://placehold.it/750x500" alt="<?= Yii::t('landing', '') ?>" height="500" width="750" />
                         </a>
                         <span class="overlay"></span>
                     </figure>
                     <figure class="span4">
                         <a href="http://placehold.it/750x500.jpg">
-                            <img src="http://placehold.it/750x500" alt="Title" height="500" width="750" />
+                            <img src="http://placehold.it/750x500" alt="<?= Yii::t('landing', '') ?>" height="500" width="750" />
                         </a>
                         <span class="overlay"></span>
                     </figure>
                     <figure class="span4">
                         <a href="http://placehold.it/750x500.jpg">
-                            <img src="http://placehold.it/750x500" alt="Title" height="500" width="750" />
+                            <img src="http://placehold.it/750x500" alt="<?= Yii::t('landing', '') ?>" height="500" width="750" />
                         </a>
                         <span class="overlay"></span>
                     </figure>
@@ -218,19 +217,19 @@ $this->title = Yii::t('app', 'KAZ-Canvas');
                 <div class="row-fluid">
                     <figure class="span4">
                         <a href="http://placehold.it/750x500.jpg">
-                            <img src="http://placehold.it/750x500" alt="Title" height="500" width="750" />
+                            <img src="http://placehold.it/750x500" alt="<?= Yii::t('landing', '') ?>" height="500" width="750" />
                         </a>
                         <span class="overlay"></span>
                     </figure>
                     <figure class="span4">
                         <a href="http://placehold.it/750x500.jpg">
-                            <img src="http://placehold.it/750x500" alt="Title" height="500" width="750" />
+                            <img src="http://placehold.it/750x500" alt="<?= Yii::t('landing', '') ?>" height="500" width="750" />
                         </a>
                         <span class="overlay"></span>
                     </figure>
                     <figure class="span4">
                         <a href="http://placehold.it/750x500.jpg">
-                            <img src="http://placehold.it/750x500" alt="Title" height="500" width="750" />
+                            <img src="http://placehold.it/750x500" alt="<?= Yii::t('landing', '') ?>" height="500" width="750" />
                         </a>
                         <span class="overlay"></span>
                     </figure>
@@ -246,63 +245,72 @@ $this->title = Yii::t('app', 'KAZ-Canvas');
             <div class="row-fluid">
                 <div class="span4">
                     <div class="price-item">
-                        <strong class="price-title">Free</strong>
+                        <strong class="price-title"><?= Yii::t('landing', 'Free') ?></strong>
                         <ul>
                             <li class="value">
-                            	<span class="price"><sup>R$</sup>0</span>
+                            	<span class="price"><sup><?= Yii::t('landing', 'moeda') ?></sup>0</span>
                             	<br />
-                            	<small><sub>Grátis, nenhum cartão requerido</sub></small>
+                            	<small><sub><?= Yii::t('landing', 'Gratis, nenhum cartao requerido') ?></sub></small>
                             	<br />
                             	<br />
-                            	<a href="#features" class="button button-buy">Testar</a>
+                            	<a href="#features" class="button button-buy"><?= Yii::t('landing', 'Testar') ?></a>
                             </li>
                             <li><i class="icon-check icon-large"></i></li>
-                            <li>1 Canvas de Modelo de<br /> Negócios</li>
-                            <li>1 Lean Model Canvas</li>
-                            <li>Assistente de criação</li>
-                            <li>Impressão em modo gráfico/texto</li>
-                            <li>Slideshow 3D</li>
-                            <li>Disponível em Português, Inglês e Espanhol</li>
-                            <li>Post-its ilimitados por bloco</li>
-                            <li>Post-its em 4 cores distintas</li>
-                            <li>Compartilhamento com um amigo</li>
-                            <li>Armazenamento na nuvem</li>
-                            <li>Compatível com computadores e smartphones</li>
-                            <li>Sincronização automática entre dispositivos</li>
+                            <li>1 <?= Yii::t('landing', 'Canvas de Modelo') ?><br /><?= Yii::t('landing', 'de Negocios') ?></li>
+                            <li>1 <?= Yii::t('landing', 'Lean Model Canvas') ?></li>
+                            <li><?= Yii::t('landing', 'Assistente de criacao') ?></li>
+                            <li><?= Yii::t('landing', 'Impressao em modo grafico e texto') ?></li>
+                            <li><?= Yii::t('landing', 'Slideshow 3D') ?></li>
+                            <li><?= Yii::t('landing', 'Disponivel em Portugues, Ingles e Espanhol') ?></li>
+                            <li><?= Yii::t('landing', 'Post-its ilimitados por bloco') ?></li>
+                            <li><?= Yii::t('landing', 'Post-its em 4 cores distintas') ?></li>
+                            <li><?= Yii::t('landing', 'Compartilhamento com um amigo') ?></li>
+                            <li><?= Yii::t('landing', 'Armazenamento na nuvem') ?></li>
+                            <li><?= Yii::t('landing', 'Compativel com computadores e smartphones') ?></li>
+                            <li><?= Yii::t('landing', 'Sincronizacao automatica entre dispositivos') ?></li>
                         </ul>
                     </div>
                 </div>
                 <div class="span4">
                     <div class="price-item price-item-top">
-                        <strong class="price-title">Premium</strong>
+                        <strong class="price-title"><?= Yii::t('landing', 'Premium') ?></strong>
                         <ul>
                             <li class="value">
-                            	<span class="price"><sup>R$</sup>7,99</span> Mensais
+                            	<span class="price"><sup><?= Yii::t('landing', 'moeda') ?></sup>7,99</span> 
+                            		<?= Yii::t('landing', 'Mensais') ?>
                             	<br />
-                            	<small><sub>Cobrados anualmente, R$ 9,99 mês a mês</sub></small>
+                            	<small>
+                            		<sub>
+                            			<?= Yii::t('landing', 'Cobrados anualmente, R$ {valor} mes a mes', ['valor' => '9,99']) ?>
+                            		</sub>
+                            	</small>
                             	<br />
                             	<br />
-                            	<button class="button button-buy">Assinar</button>
+                            	<button class="button button-buy"><?= Yii::t('landing', 'Assinar') ?></button>
                             </li>
                             <li><i class="icon-check icon-large"></i></li>
-                            <li>Canvas de Modelo de Negócios <strong>ilimitados</strong></li>
-                            <li>Lean Model Canvas <strong>ilimitados</strong></li>
-                            <li>Assistente de criação</li>
-                            <li>Impressão em modo texto</li>
-                            <li>Slideshow 3D</li>
-                            <li>Disponível em Português, Inglês e Espanhol</li>
-                            <li>Post-its ilimitados por bloco</li>
-                            <li>Post-its em 4 cores distintas</li>
-                            <li>Compartilhamento com um amigo</li>
-                            <li>Armazenamento na nuvem</li>
-                            <li>Compatível com computadores e smartphones</li>
-                            <li>Sincronização automática entre dispositivos</li>
+                            <li><?= Yii::t('landing', 'Canvas de Modelo de Negocios') ?> <strong><?= Yii::t('landing', 'ilimitados') ?></strong></li>
+                            <li><?= Yii::t('landing', 'Lean Model Canvas') ?> <strong><?= Yii::t('landing', 'ilimitados') ?></strong></li>
+                            <li><?= Yii::t('landing', 'Assistente de criacao') ?></li>
+                            <li><?= Yii::t('landing', 'Impressao em modo grafico e texto') ?></li>
+                            <li><?= Yii::t('landing', 'Slideshow 3D') ?></li>
+                            <li><?= Yii::t('landing', 'Disponivel em Portugues, Ingles e Espanhol') ?></li>
+                            <li><?= Yii::t('landing', 'Post-its ilimitados por bloco') ?></li>
+                            <li><?= Yii::t('landing', 'Post-its em 4 cores distintas') ?></li>
+                            <li><?= Yii::t('landing', 'Compartilhamento com um amigo') ?></li>
+                            <li><?= Yii::t('landing', 'Armazenamento na nuvem') ?></li>
+                            <li><?= Yii::t('landing', 'Compativel com computadores e smartphones') ?></li>
+                            <li><?= Yii::t('landing', 'Sincronizacao automatica entre dispositivos') ?></li>
                         </ul>
                     </div>
                 </div>
                 <div class="span4 space-limit">
-                    <h3>Assinatura contempla a utilização do <strong>Canvas de Modelo de Negócios</strong> e <strong>Lean Model Canvas</strong></h3>
-                    <p>Cadastre-se e comece a construir modelos canvas agora mesmo!</p>
+                    <h3>
+                    	<?= Yii::t('landing', 'Assinatura contempla a utilizacao do') ?> 
+                    	<strong><?= Yii::t('landing', 'Canvas de Modelo de Negocios') ?></strong> 
+                    	<?= Yii::t('landing', 'e') ?> <strong><?= Yii::t('landing', 'Lean Model Canvas') ?></strong>
+                    </h3>
+                    <p><?= Yii::t('landing', 'Cadastre-se e comece a construir modelos canvas agora mesmo!') ?></p>
                 </div>
             </div>
         </section>
@@ -314,39 +322,43 @@ $this->title = Yii::t('app', 'KAZ-Canvas');
         <section class="section clearfix">
             <div class="row-fluid text-center">
                 <div class="span8 offset2">
-                    <h2 class="title">Contato</h2>
+                    <h2 class="title"><?= Yii::t('landing', 'Contato') ?></h2>
                     <p>
-                    	Em caso de dúvidas ou sugestões utilize o formulário abaixo para nos contatar.
+                    	<?= Yii::t('landing', 'Em caso de duvidas ou sugestoes utilize o formulario abaixo para nos contatar.') ?>
                     	<br />
-                    	Entraremos em contato em breve.
+                    	<?= Yii::t('landing', 'Entraremos em contato em breve.') ?>
                     </p>
                 </div>
             </div>
             <div class="row-fluid">
                 <div class="span12">
                     <form class="form" action="" id="contact-us-form">
-                        <h4>Escreva para nós</h4>
+                        <h4><?= Yii::t('landing', 'Escreva para nos') ?></h4>
                         <div class="row-fluid">
                             <div class="span6">
                                 <div>
                                     <input class="span12 input-text required-field" type="text" name="contactName" 
-                                    	id="contactName" placeholder="Nome" title="Nome" />
+                                    	id="contactName" placeholder="<?= Yii::t('landing', 'Nome') ?>" 
+                                    	title="<?= Yii::t('landing', 'Nome') ?>" />
                                 </div>
                                 <div>
                                     <input class="span12 input-text required-field email-field" type="email" name="contactEmail" 
-                                    	id="contactEmail" placeholder="Email" title="Email" />
+                                    	id="contactEmail" placeholder="<?= Yii::t('landing', 'Email') ?>" 
+                                    	title="<?= Yii::t('landing', 'Email') ?>" />
                                 </div>
                                 <div>
                                     <input class="span12 input-text required-field" type="text" name="contactSubject" 
-                                    	id="contactSubject" placeholder="Assunto" title="Assunto" />
+                                    	id="contactSubject" placeholder="<?= Yii::t('landing', 'Assunto') ?>" 
+                                    	title="<?= Yii::t('landing', 'Assunto') ?>" />
                                 </div>
                             </div>
                             <div class="span6">
                                 <div>
                                     <textarea class="span12 input-text required-field" name="contactMessage" 
-                                    	id="contactMessage" placeholder="Mensagem" title="Mensagem"></textarea>
+                                    	id="contactMessage" placeholder="<?= Yii::t('landing', 'Mensagem') ?>" 
+                                    	title="<?= Yii::t('landing', 'Mensagem') ?>"></textarea>
                                 </div>
-                                <input class="span12 button" type="submit" value="Enviar" />
+                                <input class="span12 button" type="submit" value="<?= Yii::t('landing', 'Enviar') ?>" />
                             </div>
                         </div>
                     </form>
@@ -355,27 +367,3 @@ $this->title = Yii::t('app', 'KAZ-Canvas');
         </section>
     </div>
     <!-- End Contact section -->
-
-<?php /* 
-<div class="site-index">
-
-    <div class="jumbotron">
-        <h1><?= Yii::t('app', 'KAZ-Canvas'); ?></h1>
-		<br />
-		<p class="lead"><?= Yii::t('app', 'Selecione um modelo para iniciar!'); ?></p>
-		<br />
-        <p>
-        	<a class="btn btn-lg btn-success" style="width: 350px;"
-        		href="http://businessmodel.kazcanvas.com">
-        		<?= Yii::t('app', 'Canvas de Modelo de Negocios'); ?>
-        	</a>
-        </p>
-        <p>
-        	<a class="btn btn-lg btn-success" style="width: 350px;"
-        		href="http://leanmodel.kazcanvas.com">
-        		<?= Yii::t('app', 'Lean Model Canvas'); ?>
-        	</a>
-        </p>
-    </div>
-</div>
-*/ ?>
