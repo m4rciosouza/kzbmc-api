@@ -8,9 +8,15 @@ use app\controllers\CoreController;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
+use yii\web\HttpException;
 
 class SiteController extends CoreController
 {
+	public function beforeAction($action) {
+		$this->enableCsrfValidation = false;
+		return parent::beforeAction($action);
+	}
+	
     public function behaviors()
     {
         return [
@@ -29,6 +35,7 @@ class SiteController extends CoreController
                 'class' => VerbFilter::className(),
                 'actions' => [
                     'logout' => ['post'],
+                	'contact' => ['post', 'get']
                 ],
             ],
         ];
@@ -40,10 +47,6 @@ class SiteController extends CoreController
             'error' => [
                 'class' => 'yii\web\ErrorAction',
             ],
-            'captcha' => [
-                'class' => 'yii\captcha\CaptchaAction',
-                'fixedVerifyCode' => YII_ENV_TEST ? 'testme' : null,
-            ],
         ];
     }
 
@@ -51,7 +54,6 @@ class SiteController extends CoreController
     {
     	$this->layout = 'landing';
     	return $this->render('landingIndex');
-        // return $this->render('index');
     }
 
     public function actionLogin()
@@ -75,5 +77,34 @@ class SiteController extends CoreController
         Yii::$app->user->logout();
 
         return $this->goHome();
+    }
+    
+    public function actionContact() 
+    {
+    	$params = Yii::$app->getRequest()->post();
+     	$contactName = $this->sanitizeInput($params['contactName']);
+     	$contactEmail = $this->sanitizeInput($params['contactEmail']);
+     	$contactSubject = $this->sanitizeInput($params['contactSubject']);
+     	$contactMessage = $this->sanitizeInput($params['contactMessage']);
+    	
+     	if(empty($contactEmail) || !preg_match("/^[[:alnum:]][a-z0-9_.-]*@[a-z0-9.-]+\.[a-z]{2,4}$/i", $contactEmail)) {
+     		throw new HttpException(400, 'Invalid data');
+     	}
+     	
+     	Yii::$app->mailer->compose()
+	     	->setFrom($contactEmail)
+	     	->setTo('marcio@kazale.com')
+	     	->setSubject("KAZ-Canvas contato - $contactSubject")
+	     	->setHtmlBody("Nome: $contactName &lt;$contactEmail&gt;<br /><br />Mensagem:<br /><br />$contactMessage")
+	     	->send();
+     	
+    	Yii::$app->end();
+    }
+    
+    private function sanitizeInput($data) {
+    	$data = trim($data);
+    	$data = stripslashes($data);
+    	$data = htmlspecialchars($data);
+    	return $data;
     }
 }

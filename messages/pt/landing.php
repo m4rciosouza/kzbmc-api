@@ -8,7 +8,7 @@ return [
 		'Precos' => 'Preços',
 		'Contato' => 'Contato',
 		'Canvas e Modelo de Negocios, Lean Model Canvas' => 'Canvas e Modelo de Negócios, Lean Model Canvas',
-		'Solução completa para criacao de Canvas de Modelo de Negocios e Lean Model Canvas' => 
+		'Solucao completa para criacao de Canvas de Modelo de Negocios e Lean Model Canvas' => 
 					'Solução completa para criação de Canvas de Modelo de Negócios e Lean Model Canvas',
 		'Testar' => 'Testar',
 		'Canvas de Modelo de Negocios' => 'Canvas de Modelo de Negócios',

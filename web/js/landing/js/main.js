@@ -77,11 +77,13 @@ jQuery(function($) {
         });
         if(!hasError) {
             var formData = $(this).serialize();
-            $.post('contacts.php', formData, function(data) {
+            console.log(formData);
+            $.post('site/contact', formData, function(data) {
+            	console.log(data);
                 form.find('.required-field').val('');
                 form.append('<div class="success-msg">Thank you! We will contact you shortly.</div>');
             }).fail(function() {
-                //form.find('.required-field').val('');
+                form.find('.required-field').val('');
                 form.append('<div class="error-msg">Error occurred. Please try again later.</div>');
             });
         }               
@@ -94,7 +96,7 @@ jQuery(function($) {
 		'cyclic': true,
 		'transitionIn': 'elastic',
 		'transitionOut': 'elastic',
-		'titleShow': false,
+		'titleShow': true,
 		'titlePosition': 'over',
 		'overlayColor': '#000',
 		'overlayOpacity': 0.7

@@ -20,7 +20,7 @@ use app\assets\AppAsset;
 	<head>
 	    <meta charset="<?= Yii::$app->charset ?>" />
 	    <meta name="keywords" content="<?= Yii::t('landing', 'Canvas e Modelo de Negocios, Lean Model Canvas') ?>" />
-	    <meta name="description" content="<?= Yii::t('landing', 'Solução completa para criacao de Canvas de Modelo de Negocios e Lean Model Canvas') ?>" />
+	    <meta name="description" content="<?= Yii::t('landing', 'Solucao completa para criacao de Canvas de Modelo de Negocios e Lean Model Canvas') ?>" />
 	    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	    <link rel="icon" type="image/x-icon" href="<?= Yii::$app->homeUrl; ?>favicon.ico" />
 	    <link rel="shortcut icon" href="<?= Yii::$app->homeUrl; ?>favicon.ico" type="image/x-icon" />
@@ -53,8 +53,10 @@ use app\assets\AppAsset;
 		                <a href="#" class="kz_mouse_cursor">
             				<img src="<?= Yii::$app->homeUrl; ?>images/flag_brasil.png" alt="<?= Yii::t('app', 'Portugues'); ?>" 
             					width="25" onclick="setLang('pt')" />
+            				<?php /* 
 					        <img src="<?= Yii::$app->homeUrl; ?>images/flag_spain.png" alt="<?= Yii::t('app', 'Espanhol'); ?>" 
 					        	width="25" onclick="setLang('es')" />
+					        */ ?>
 					        <img src="<?= Yii::$app->homeUrl; ?>images/flag_united_kingdom.png" alt="<?= Yii::t('app', 'Ingles'); ?>" 
 					        	width="25" onclick="setLang('en')" />
             			</a>

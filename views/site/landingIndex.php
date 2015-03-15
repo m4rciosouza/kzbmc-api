@@ -24,7 +24,7 @@ $this->title = Yii::t('app', 'KAZ-Canvas');
                         </div>
                         <div class="slide-caption">
                             <h2><?= Yii::t('landing', 'Canvas de Modelo de Negocios') ?></h2>
-                            <a href="#features" class="button button-buy">Testar</a>
+                            <a href="#features" class="button button-buy"><?= Yii::t('landing', 'Testar') ?></a>
                         </div>
                     </li>
                     <li class="slide row-fluid">
@@ -196,40 +196,52 @@ $this->title = Yii::t('app', 'KAZ-Canvas');
             <div class="gallery-list">
                 <div class="row-fluid">
                     <figure class="span4">
-                        <a href="http://placehold.it/750x500.jpg">
-                            <img src="http://placehold.it/750x500" alt="<?= Yii::t('landing', '') ?>" height="500" width="750" />
+                        <a href="<?= Yii::$app->homeUrl; ?>images/landing/business-model-canvas.png"
+                        	title="<?= Yii::t('landing', 'Canvas de Modelo de Negocios') ?>">
+                            <img src="<?= Yii::$app->homeUrl; ?>images/landing/business-model-canvas.png" 
+                            	alt="<?= Yii::t('landing', 'Canvas de Modelo de Negocios') ?>" height="500" width="750" />
                         </a>
                         <span class="overlay"></span>
                     </figure>
                     <figure class="span4">
-                        <a href="http://placehold.it/750x500.jpg">
-                            <img src="http://placehold.it/750x500" alt="<?= Yii::t('landing', '') ?>" height="500" width="750" />
+                        <a href="<?= Yii::$app->homeUrl; ?>images/landing/lean-model-canvas.png"
+                        	title="<?= Yii::t('landing', 'Lean Model Canvas') ?>">
+                            <img src="<?= Yii::$app->homeUrl; ?>images/landing/lean-model-canvas.png" 
+                            	alt="<?= Yii::t('landing', 'Lean Model Canvas') ?>" height="500" width="750" />
                         </a>
                         <span class="overlay"></span>
                     </figure>
                     <figure class="span4">
-                        <a href="http://placehold.it/750x500.jpg">
-                            <img src="http://placehold.it/750x500" alt="<?= Yii::t('landing', '') ?>" height="500" width="750" />
+                        <a href="<?= Yii::$app->homeUrl; ?>images/landing/canvas-list.png"
+                        	title="<?= Yii::t('landing', 'Canvas') ?>">
+                            <img src="<?= Yii::$app->homeUrl; ?>images/landing/canvas-list.png" 
+                            	alt="<?= Yii::t('landing', 'Canvas') ?>" height="500" width="750" />
                         </a>
                         <span class="overlay"></span>
                     </figure>
                 </div>
                 <div class="row-fluid">
                     <figure class="span4">
-                        <a href="http://placehold.it/750x500.jpg">
-                            <img src="http://placehold.it/750x500" alt="<?= Yii::t('landing', '') ?>" height="500" width="750" />
+                        <a href="<?= Yii::$app->homeUrl; ?>images/landing/canvas-wizard.png"
+                        	title="<?= Yii::t('landing', 'Assistente de criacao') ?>">
+                            <img src="<?= Yii::$app->homeUrl; ?>images/landing/canvas-wizard.png" 
+                            	alt="<?= Yii::t('landing', 'Assistente de criacao') ?>" height="500" width="750" />
                         </a>
                         <span class="overlay"></span>
                     </figure>
                     <figure class="span4">
-                        <a href="http://placehold.it/750x500.jpg">
-                            <img src="http://placehold.it/750x500" alt="<?= Yii::t('landing', '') ?>" height="500" width="750" />
+                        <a href="<?= Yii::$app->homeUrl; ?>images/landing/canvas-3d-slideshow.png"
+                        	title="<?= Yii::t('landing', 'Slideshow 3D') ?>">
+                            <img src="<?= Yii::$app->homeUrl; ?>images/landing/canvas-3d-slideshow.png" 
+                            	alt="<?= Yii::t('landing', 'Slideshow 3D') ?>" height="500" width="750" />
                         </a>
                         <span class="overlay"></span>
                     </figure>
                     <figure class="span4">
-                        <a href="http://placehold.it/750x500.jpg">
-                            <img src="http://placehold.it/750x500" alt="<?= Yii::t('landing', '') ?>" height="500" width="750" />
+                        <a href="<?= Yii::$app->homeUrl; ?>images/landing/canvas-text-template.png"
+                        	title="<?= Yii::t('landing', 'Impressao em modo grafico e texto') ?>">
+                            <img src="<?= Yii::$app->homeUrl; ?>images/landing/canvas-text-template.png" 
+                            	alt="<?= Yii::t('landing', 'Impressao em modo grafico e texto') ?>" height="500" width="750" />
                         </a>
                         <span class="overlay"></span>
                     </figure>
@@ -289,7 +301,7 @@ $this->title = Yii::t('app', 'KAZ-Canvas');
                             	<button class="button button-buy"><?= Yii::t('landing', 'Assinar') ?></button>
                             </li>
                             <li><i class="icon-check icon-large"></i></li>
-                            <li><?= Yii::t('landing', 'Canvas de Modelo de Negocios') ?> <strong><?= Yii::t('landing', 'ilimitados') ?></strong></li>
+                            <li><?= Yii::t('landing', 'Canvas de Modelo de Negocios') ?><br /><strong><?= Yii::t('landing', 'ilimitados') ?></strong></li>
                             <li><?= Yii::t('landing', 'Lean Model Canvas') ?> <strong><?= Yii::t('landing', 'ilimitados') ?></strong></li>
                             <li><?= Yii::t('landing', 'Assistente de criacao') ?></li>
                             <li><?= Yii::t('landing', 'Impressao em modo grafico e texto') ?></li>
