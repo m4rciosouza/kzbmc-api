@@ -9,10 +9,25 @@ use Yii;
 use app\modules\v1\models\ItemCanvas;
 use yii\web\UnauthorizedHttpException;
 use yii\web\HttpException;
+use yii\helpers\VarDumper;
 
 class MobileController extends ActiveController
 {
 	public $modelClass = 'app\modules\v1\models\ProjetoCanvas';
+	
+	public $serializer = [
+			'class' => 'yii\rest\Serializer',
+			'collectionEnvelope' => 'items',
+	];
+	
+	public function behaviors()
+	{
+		return [
+				'corsFilter' => [
+						'class' => \yii\filters\Cors::className(),
+				],
+		];
+	}
 	
 	public function actions()
 	{
@@ -27,12 +42,16 @@ class MobileController extends ActiveController
 	 */
 	public function actionSincronizarServidor()
 	{
+		if(Yii::$app->request->getIsOptions()) {
+			return true;
+		}
+		
 		$usuario = $this->validateUsuario();
 		$transaction = \Yii::$app->db->beginTransaction();
 		
 		try {
 			$projetoCanvas = $this->salvarProjetoCanvas($usuario->email);
-			$this->salvarItensCanvas($projetoCanvas->id);
+			//$this->salvarItensCanvas($projetoCanvas->id);
 			$transaction->commit();
 			return $projetoCanvas;
 		}
@@ -52,7 +71,7 @@ class MobileController extends ActiveController
 	{
 		ItemCanvas::deleteAll(['id_projeto_canvas' => $projetoCanvasId]);
 		
-		$itensCanvas = Yii::$app->request->post('ItemCanvas');
+		$itensCanvas = Yii::$app->request->post('itens');
 		
 		if($itensCanvas && count($itensCanvas) > 0) {
 			foreach($itensCanvas as $item) {
@@ -79,19 +98,19 @@ class MobileController extends ActiveController
 	 */
 	private function salvarProjetoCanvas($email)
 	{
-		$projetoCanvasId = Yii::$app->request->post('projeto_canvas_id');
+		$projetoCanvasId = Yii::$app->getRequest()->getBodyParam('id');
 		$projetoCanvas = new ProjetoCanvas();
 			
-		if($projetoCanvasId) {
+		if(is_numeric($projetoCanvasId)) {
 			$projetoCanvas = ProjetoCanvas::findOne($projetoCanvasId);
 			if(!$projetoCanvas) {
 				throw new \Exception('Project canvas not found', 400);
 			}
 		}
 
-		$projetoCanvas->load(Yii::$app->request->post());
+		$projetoCanvas->load(Yii::$app->getRequest()->getBodyParams(), '');
 		$projetoCanvas->email = $email;
-		
+		$projetoCanvas->ativo = ProjetoCanvas::ATIVO;
 		if(!$projetoCanvas->save()) {
 			throw new \Exception('Error saving project canvas', 500);
 		}
@@ -130,12 +149,11 @@ class MobileController extends ActiveController
 	
 	private function validateUsuario()
 	{
-		$email = Yii::$app->request->post('email');
-		$senha = Yii::$app->request->post('senha');
+		$params = Yii::$app->request->getBodyParams();
 		
-		$usuario = Usuario::findOne(['email' => $email, 'ativo' => Usuario::ATIVO]);
+		$usuario = Usuario::findOne(['email' => $params['email'], 'ativo' => Usuario::ATIVO]);
 		
-		if(!$usuario || $usuario->senha != md5($senha)) {
+		if(!$usuario || $usuario->senha != md5($params['senha'])) {
 			throw new UnauthorizedHttpException('Bad credentials', 401);
 		}
 		
