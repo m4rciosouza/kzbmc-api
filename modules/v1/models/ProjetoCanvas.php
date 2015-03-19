@@ -39,11 +39,12 @@ class ProjetoCanvas extends \yii\db\ActiveRecord
 	
 	public function getItens()
 	{
-		$itensCanvasArr = [];
+		$itensCanvasArr = ItemCanvas::getTipoArray();
 		$itensCanvas = ItemCanvas::findAll(['id_projeto_canvas' => $this->id]);
 		if(count($itensCanvas) > 0) {
 			foreach($itensCanvas as $itemCanvas) {
 				$itensCanvasArr[$itemCanvas->tipo][] = [
+						'id' => strval($itemCanvas->id),
 						'titulo' => $itemCanvas->titulo,
 						'descricao' => $itemCanvas->descricao,
 						'cor' => $itemCanvas->cor

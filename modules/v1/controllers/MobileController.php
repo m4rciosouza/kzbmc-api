@@ -51,9 +51,9 @@ class MobileController extends ActiveController
 		
 		try {
 			$projetoCanvas = $this->salvarProjetoCanvas($usuario->email);
-			//$this->salvarItensCanvas($projetoCanvas->id);
+			$this->salvarItensCanvas($projetoCanvas->id);
 			$transaction->commit();
-			return $projetoCanvas;
+			return ['projeto' => $projetoCanvas, 'itens' => $projetoCanvas->getItens()];
 		}
 		catch(\Exception $e) {
 			$transaction->rollBack();
@@ -71,19 +71,25 @@ class MobileController extends ActiveController
 	{
 		ItemCanvas::deleteAll(['id_projeto_canvas' => $projetoCanvasId]);
 		
-		$itensCanvas = Yii::$app->request->post('itens');
+		$itensCanvas = Yii::$app->getRequest()->getBodyParam('itens');
 		
 		if($itensCanvas && count($itensCanvas) > 0) {
-			foreach($itensCanvas as $item) {
-				$itemCanvas = new ItemCanvas();
-				$itemCanvas->id_projeto_canvas = $projetoCanvasId;
-				$itemCanvas->tipo = $item['tipo'];
-				$itemCanvas->titulo = $item['titulo'];
-				$itemCanvas->descricao = $item['descricao'];
-				$itemCanvas->cor = $item['cor'];
-				
-				if(!$itemCanvas->save()) {
-					throw new \Exception('Error saving item canvas', 500);
+			foreach($itensCanvas as $tipo=>$itens) {
+				foreach($itens as $item) {
+					$itemCanvas = new ItemCanvas();
+					$itemCanvas->id_projeto_canvas = $projetoCanvasId;
+					$itemCanvas->tipo = $tipo;
+					$itemCanvas->titulo = $item['titulo'];
+					$itemCanvas->descricao = $item['descricao'];
+					$itemCanvas->cor = $item['cor'];
+					
+					if(is_numeric($item['id'])) {
+						$itemCanvas->id = $item['id'];
+					}
+					
+					if(!$itemCanvas->save()) {
+						throw new \Exception('Error saving item canvas', 500);
+					}
 				}
 			}
 		}
