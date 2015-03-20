@@ -37,6 +37,27 @@ class MobileController extends ActiveController
 	}
 	
 	/**
+	 * Retorna os dados de um projeto, assim como a listagem de itens.
+	 * 
+	 * @param integer id
+	 */
+	public function actionListarProjeto($id)
+	{
+		if(Yii::$app->request->getIsOptions()) {
+			return true;
+		}
+	
+		$usuario = $this->validateUsuario();
+		
+		$projetoCanvas = ProjetoCanvas::findOne($id);
+		if(!$projetoCanvas) {
+			throw new \Exception('Project canvas not found', 400);
+		}
+		
+		return ['projeto' => $projetoCanvas, 'itens' => $projetoCanvas->getItens()];
+	}
+	
+	/**
 	 * Recebe do dispositivo movel os dados dos projetos canvas a 
 	 * serem gravados no sistema.
 	 */

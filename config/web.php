@@ -100,7 +100,8 @@ $config = [
 	    					'controller' => 'v1/mobile',
 	    					'extraPatterns' => [
 	    							'POST,OPTIONS sincronizar-servidor' => 'sincronizar-servidor',
-	    							'POST,OPTIONS sincronizar-cliente' => 'sincronizar-cliente'
+	    							'POST,OPTIONS sincronizar-cliente' => 'sincronizar-cliente',
+	    							'GET,OPTIONS projeto/{id}' => 'listar-projeto',
 	    						]
     					],
     					['class' => 'yii\rest\UrlRule',
