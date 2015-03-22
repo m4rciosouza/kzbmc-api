@@ -153,10 +153,18 @@ class MobileController extends ActiveController
 	 */
 	public function actionSincronizarCliente()
 	{
+		if(Yii::$app->request->getIsOptions()) {
+			return true;
+		}
+		
 		$usuario = $this->validateUsuario();
+		$idsExistentes = $this->getIdsExistentes();
 		
 		$condition = ['ativo' => ProjetoCanvas::ATIVO, 'id_usuario' => $usuario->id];
-		$projetosCanvas = ProjetoCanvas::findAll($condition);
+		$projetosCanvas = ProjetoCanvas::find()
+							->where(['NOT IN', 'id', $idsExistentes])
+							->andWhere($condition)
+							->all();
 		
 		$projetosCanvasArr = [];
 		
@@ -174,13 +182,31 @@ class MobileController extends ActiveController
 		return $projetosCanvasArr;
 	}
 	
+	/**
+	 * Retorna listagem de ids existentes localmente passados por parâmetro.
+	 * 
+	 * @return array
+	 */
+	private function getIdsExistentes()
+	{
+		$idsExistentes = Yii::$app->getRequest()->get('idsExistentes', []);
+		
+		if(count($idsExistentes) > 0) {
+			$idsExistentes = explode(',', $idsExistentes);
+		}
+		
+		return $idsExistentes;
+	}
+	
 	private function validateUsuario()
 	{
-		$params = Yii::$app->request->getBodyParams();
+		$request = Yii::$app->getRequest();
+		$email = $request->get('email', $request->getBodyParam('email'));
+		$senha = $request->get('senha', $request->getBodyParam('senha'));
 		
-		$usuario = Usuario::findOne(['email' => $params['email'], 'ativo' => Usuario::ATIVO]);
+		$usuario = Usuario::findOne(['email' => $email, 'ativo' => Usuario::ATIVO]);
 		
-		if(!$usuario || $usuario->senha != md5($params['senha'])) {
+		if(!$usuario || $usuario->senha != md5($senha)) {
 			throw new UnauthorizedHttpException('Bad credentials', 401);
 		}
 		
