@@ -156,18 +156,16 @@ class MobileController extends ActiveController
 		if(Yii::$app->request->getIsOptions()) {
 			return true;
 		}
-		
 		$usuario = $this->validateUsuario();
 		$idsExistentes = $this->getIdsExistentes();
+		$this->processarIdsExcluir($usuario->id);
 		
 		$condition = ['ativo' => ProjetoCanvas::ATIVO, 'id_usuario' => $usuario->id];
 		$projetosCanvas = ProjetoCanvas::find()
 							->where(['NOT IN', 'id', $idsExistentes])
 							->andWhere($condition)
 							->all();
-		
 		$projetosCanvasArr = [];
-		
 		if(count($projetosCanvas)) {
 			foreach($projetosCanvas as $projetoCanvas) {
 				$projetosCanvasArr[] = [
@@ -180,6 +178,27 @@ class MobileController extends ActiveController
 		}
 		
 		return $projetosCanvasArr;
+	}
+	
+	/**
+	 * Remove os projetos marcados para exclusão.
+	 * 
+	 * @param $idUsuario
+	 */
+	private function processarIdsExcluir($idUsuario)
+	{
+		$idsExcluir = Yii::$app->getRequest()->get('idsExcluir');
+	
+		if($idsExcluir) {
+			$arrIdsExcluir = explode(',', $idsExcluir);
+			foreach($arrIdsExcluir as $idExcluir) {
+				$projetoCanvas = ProjetoCanvas::findOne($idExcluir);
+				if($projetoCanvas && $projetoCanvas->id_usuario == $idUsuario) {
+					ItemCanvas::deleteAll(['id_projeto_canvas' => $idExcluir]);
+					ProjetoCanvas::deleteAll(['id' => $idExcluir]);
+				}
+			}
+		}
 	}
 	
 	/**
@@ -206,7 +225,7 @@ class MobileController extends ActiveController
 		
 		$usuario = Usuario::findOne(['email' => $email, 'ativo' => Usuario::ATIVO]);
 		
-		if(!$usuario || $usuario->senha != md5($senha)) {
+		if(!$usuario || $usuario->senha != $senha) {
 			throw new UnauthorizedHttpException('Bad credentials', 401);
 		}
 		
