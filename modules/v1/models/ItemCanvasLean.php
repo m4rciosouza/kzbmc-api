@@ -84,4 +84,19 @@ class ItemCanvasLean extends \yii\db\ActiveRecord
     			'projetoCanvas'
     		];
     }
+    
+    public static function getTipoArray()
+    {
+    	return [
+    			self::PARCEIROS_CHAVE => [],
+    			self::ATIVIDADES_CHAVE => [],
+    			self::RECURSOS_CHAVE => [],
+    			self::PROPOSTAS_VALOR => [],
+    			self::RELACIONAMENTO_CLIENTES => [],
+    			self::CANAIS => [],
+    			self::SEGMENTOS_CLIENTES => [],
+    			self::ESTRUTURA_CUSTO => [],
+    			self::FLUXO_RECEITA => []
+    	];
+    }
 }

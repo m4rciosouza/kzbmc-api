@@ -105,6 +105,14 @@ $config = [
 	    						]
     					],
     					['class' => 'yii\rest\UrlRule',
+    					'controller' => 'v1/mobile-lean',
+	    					'extraPatterns' => [
+	    							'POST,OPTIONS sincronizar-servidor' => 'sincronizar-servidor',
+	    							'GET,OPTIONS sincronizar-cliente' => 'sincronizar-cliente',
+	    							'POST,OPTIONS projeto/{id}' => 'listar-projeto',
+	    					]
+    					],
+    					['class' => 'yii\rest\UrlRule',
     						'controller' => 'v1/slideshow',
     					],
     					// backend routes
