@@ -42,6 +42,8 @@ return [
 		'Sincronizacao automatica entre dispositivos' => 'Sincronização automática entre dispositivos',
 		'Premium' => 'Premium',
 		'Mensais' => 'Mensais',
+		'12 meses' => '12 meses',
+		'valor' => '19,99',
 		'Cobrados anualmente, R$ {valor} mes a mes' => 'Cobrados anualmente, R$ {valor} mês a mês',
 		'Assinar' => 'Assinar',
 		'ilimitados' => 'ilimitados',

@@ -40,6 +40,8 @@ return [
 		'Sincronizacao automatica entre dispositivos' => 'Automatic synchronization between devices',
 		'Premium' => 'Premium',
 		'Mensais' => 'Monthly',
+		'12 meses' => '12 months',
+		'valor' => '9.99',
 		'Cobrados anualmente, R$ {valor} mes a mes' => 'Billed yearly, US$ {valor} month-to-month',
 		'Assinar' => 'Sign up',
 		'ilimitados' => 'unlimited',

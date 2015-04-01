@@ -7,6 +7,7 @@ $this->title = Yii::t('app', 'KAZ-Canvas');
         <section class="section clearfix">
             <div id="homeCarousel" class="slider">
                 <ul class="slides">
+                	<?php /* 
                     <li class="slide row-fluid">
                         <div class="span8 offset4">
                             <img src="http://placehold.it/960x860" height="860" width="960" 
@@ -17,9 +18,10 @@ $this->title = Yii::t('app', 'KAZ-Canvas');
                             <a href="#features" class="button button-buy"><?= Yii::t('landing', 'Testar') ?></a>
                         </div>
                     </li>
-                    <li class="slide right-dir row-fluid">                        
-                        <div class="span8">
-                            <img src="http://placehold.it/960x860" height="860" width="960" 
+                    */ ?>
+                    <li class="slide row-fluid">                        
+                        <div class="span8 offset4">
+                            <img src="<?= Yii::$app->homeUrl; ?>images/business-model-canvas-slide1.png" height="860" width="960" 
                             	alt="<?= Yii::t('landing', 'Canvas de Modelo de Negocios') ?>" />
                         </div>
                         <div class="slide-caption">
@@ -27,9 +29,9 @@ $this->title = Yii::t('app', 'KAZ-Canvas');
                             <a href="#features" class="button button-buy"><?= Yii::t('landing', 'Testar') ?></a>
                         </div>
                     </li>
-                    <li class="slide row-fluid">
-                        <div class="span8 offset4">
-                            <img src="http://placehold.it/960x860" height="860" width="960" 
+                    <li class="slide right-dir row-fluid">
+                        <div class="span8">
+                            <img src="<?= Yii::$app->homeUrl; ?>images/lean-model-canvas-slide2.png" height="860" width="960" 
                             	alt="<?= Yii::t('landing', 'Lean Model Canvas') ?>" />
                         </div>
                         <div class="slide-caption">
@@ -63,6 +65,11 @@ $this->title = Yii::t('app', 'KAZ-Canvas');
                     		<?= Yii::t('landing', 'Ferramenta de criacao de Canvas de Modelo de Negocios online.') ?>
                     	</a>
                     </p>
+                    <p>
+                    	<a href="http://businessmodel.kazcanvas.com" class="button button-buy" target="_blank">
+                    		<?= Yii::t('landing', 'Testar') ?>
+                    	</a>
+                    </p>
                 </article>
                 <article class="span6 feature-item">
                     <div class="thumb">
@@ -78,6 +85,11 @@ $this->title = Yii::t('app', 'KAZ-Canvas');
                     <p>
                     	<a href="http://leanmodel.kazcanvas.com" target="_blank">
                     		<?= Yii::t('landing', 'Ferramenta de criacao de Lean Model Canvas online.') ?>
+                    	</a>
+                    </p>
+                    <p>
+                    	<a href="http://leanmodel.kazcanvas.com" class="button button-buy" target="_blank">
+                    		<?= Yii::t('landing', 'Testar') ?>
                     	</a>
                     </p>
                 </article>
@@ -288,17 +300,22 @@ $this->title = Yii::t('app', 'KAZ-Canvas');
                         <strong class="price-title"><?= Yii::t('landing', 'Premium') ?></strong>
                         <ul>
                             <li class="value">
-                            	<span class="price"><sup><?= Yii::t('landing', 'moeda') ?></sup>7,99</span> 
-                            		<?= Yii::t('landing', 'Mensais') ?>
+                            	<span class="price">
+                            		<sup><?= Yii::t('landing', 'moeda') ?></sup>
+                            		<?= Yii::t('landing', 'valor') ?>
+                            	</span> 
                             	<br />
+                            	<?php /* 
                             	<small>
                             		<sub>
                             			<?= Yii::t('landing', 'Cobrados anualmente, R$ {valor} mes a mes', ['valor' => '9,99']) ?>
                             		</sub>
                             	</small>
+                            	*/ ?>
+                            	<small><sub><?= Yii::t('landing', 'Assinar') ?> <?= Yii::t('landing', '12 meses') ?></sub></small>
                             	<br />
                             	<br />
-                            	<button class="button button-buy"><?= Yii::t('landing', 'Assinar') ?></button>
+                            	<a href="#features" class="button button-buy"><?= Yii::t('landing', 'Testar') ?></a>
                             </li>
                             <li><i class="icon-check icon-large"></i></li>
                             <li><?= Yii::t('landing', 'Canvas de Modelo de Negocios') ?><br /><strong><?= Yii::t('landing', 'ilimitados') ?></strong></li>
