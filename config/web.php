@@ -29,7 +29,7 @@ $config = [
             // send all mails to a file by default. You have to set
             // 'useFileTransport' to false and configure a transport
             // for the mailer to send real emails.
-            'useFileTransport' => true,
+            'useFileTransport' => YII_DEBUG ? true : false,
         ],
         'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,
@@ -105,13 +105,19 @@ $config = [
 	    						]
     					],
     					['class' => 'yii\rest\UrlRule',
-    					'controller' => 'v1/mobile-lean',
-	    					'extraPatterns' => [
-	    							'POST,OPTIONS sincronizar-servidor' => 'sincronizar-servidor',
-	    							'GET,OPTIONS sincronizar-cliente' => 'sincronizar-cliente',
-	    							'POST,OPTIONS projeto/{id}' => 'listar-projeto',
-	    					]
+	    					'controller' => 'v1/mobile-lean',
+		    					'extraPatterns' => [
+		    							'POST,OPTIONS sincronizar-servidor' => 'sincronizar-servidor',
+		    							'GET,OPTIONS sincronizar-cliente' => 'sincronizar-cliente',
+		    							'POST,OPTIONS projeto/{id}' => 'listar-projeto',
+		    					]
     					],
+    					['class' => 'yii\rest\UrlRule',
+	    					'controller' => 'v1/payments',
+		    					'extraPatterns' => [
+		    							'GET,OPTIONS paypal' => 'paypal',
+		    					]
+	    					],
     					['class' => 'yii\rest\UrlRule',
     						'controller' => 'v1/slideshow',
     					],

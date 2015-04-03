@@ -92,7 +92,7 @@ class SiteController extends CoreController
      	}
      	
      	Yii::$app->mailer->compose()
-	     	->setFrom($contactEmail)
+	     	->setFrom(Yii::$app->params['adminEmail'])
 	     	->setTo('marcio@kazale.com')
 	     	->setSubject("KAZ-Canvas contato - $contactSubject")
 	     	->setHtmlBody("Nome: $contactName &lt;$contactEmail&gt;<br /><br />Mensagem:<br /><br />$contactMessage")

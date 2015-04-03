@@ -26,7 +26,9 @@ $this->title = Yii::t('app', 'KAZ-Canvas');
                         </div>
                         <div class="slide-caption">
                             <h2><?= Yii::t('landing', 'Canvas de Modelo de Negocios') ?></h2>
-                            <a href="#features" class="button button-buy"><?= Yii::t('landing', 'Testar') ?></a>
+                            <a href="http://businessmodel.kazcanvas.com" target="_blank" class="button button-buy">
+                            	<?= Yii::t('landing', 'Testar') ?>
+                            </a>
                         </div>
                     </li>
                     <li class="slide right-dir row-fluid">
@@ -36,7 +38,9 @@ $this->title = Yii::t('app', 'KAZ-Canvas');
                         </div>
                         <div class="slide-caption">
                             <h2><?= Yii::t('landing', 'Lean Model Canvas') ?></h2>
-                            <a href="#features" class="button button-buy"><?= Yii::t('landing', 'Testar') ?></a>
+                            <a href="http://leanmodel.kazcanvas.com" target="_blank" class="button button-buy">
+                            	<?= Yii::t('landing', 'Testar') ?>
+                            </a>
                         </div>
                     </li>
                 </ul>
