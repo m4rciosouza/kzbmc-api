@@ -228,6 +228,10 @@ class MobileLeanController extends ActiveController
 			throw new UnauthorizedHttpException('Bad credentials', 401);
 		}
 		
+		if($usuario->plano_assinatura == Usuario::PLANO_BASICO) {
+			throw new HttpException(400, 'Invalid plan', 1001);
+		}
+		
 		return $usuario;
 	}
 }

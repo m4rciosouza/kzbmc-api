@@ -112,12 +112,12 @@ $config = [
 		    							'POST,OPTIONS projeto/{id}' => 'listar-projeto',
 		    					]
     					],
-    					['class' => 'yii\rest\UrlRule',
+    					/*['class' => 'yii\rest\UrlRule',
 	    					'controller' => 'v1/payments',
 		    					'extraPatterns' => [
-		    							'GET,OPTIONS paypal' => 'paypal',
+		    							'GET,POST,OPTIONS paypal' => 'paypal',
 		    					]
-	    					],
+	    					],*/
     					['class' => 'yii\rest\UrlRule',
     						'controller' => 'v1/slideshow',
     					],
